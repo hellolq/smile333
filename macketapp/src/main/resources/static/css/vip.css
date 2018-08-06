@@ -1,0 +1,295 @@
+@charset "utf-8";
+header {
+	padding: .5rem 0 0.8rem;
+	text-align: center;
+	background-color: rgba(255,255,255,1.00);
+	background-image: url(../images/bjing4.jpg);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	background-size: 100% auto;
+	position: relative;
+}
+.header-userpic {
+	width: 1.8rem;
+	height: 1.8rem;
+	margin: 0 auto 0.2rem;
+	border-radius: 50%;
+	border: 1px solid rgba(255,255,255,1.00);
+	overflow: hidden;
+}
+.header-referrer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 0.2rem;
+}
+.header-referrer>div {
+	margin: 0 0.1rem;
+}
+.an-employ {
+	position: absolute;
+	bottom: -0.5rem;
+	left: 0;
+	right: 0;
+	background-color: rgba(196,44,28,1.00);
+	margin: auto;
+	width: 30%;
+	border-radius: 5rem;
+	color: rgba(255,255,255,1.00);
+	height: 1rem;
+	line-height: 1rem;
+}
+.vip-gl-list {
+	margin-top: 0.25rem;
+	padding: 0.7rem 0;
+	background-color: rgba(255,255,255,1.00);
+	position: relative;
+}
+.my-income {
+	padding: 0.7rem 0 0;
+}
+.my-income ul{
+	display: flex;
+	flex-flow: row wrap;
+	
+}
+
+.my-income ul li {
+	box-sizing: border-box;
+	padding: 0.3rem 0;
+	padding-right: 0;
+	padding-left: 0;
+	border: 1px solid rgba(248,248,248,1.00);
+	flex: 1 1 auto;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
+
+
+.vip-gl-list h3 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgba(189,111,12,1.00);
+	margin-bottom: 0.8rem;
+}
+.vip-gl-list h3:before, .vip-gl-list h3:after {
+	content: '';
+	display: block;
+	width: 0.3rem;
+	height: 0.3rem;
+	background-image: url(../images/ui/fenlei_c.png);
+	margin: 0 0.25rem;
+	background-size: contain;
+}
+.vip-gl-list ul li {
+	width: 33.33%;
+	text-align: center;
+}
+.vip-gl-list ul li>span {
+	display: block;
+	margin-bottom: 0.3rem;
+	color: rgba(50,46,46,1.00);
+	font-family: shuzi_3;
+}
+.vip-gl-list ul li>.icon {
+	width: 0.8rem;
+	height: 0.8rem;
+	margin-bottom: 0.4rem;
+	color: rgba(187,140,23,1.00);
+}
+.tixian {
+	background-color: rgba(225,85,22,1.00);
+	padding: 0.1rem 0.3rem;
+	color: rgba(255,255,255,1.00);
+	margin: 0.25rem 25% 0;
+	border-radius: 5rem;
+}
+.scroll-notice {
+	background-color: rgba(255,255,255,1.00);
+	padding: .8rem .3rem .3rem;
+}
+#scrollotext {
+	white-space: nowrap;
+	height: auto;
+	color: rgba(77,68,68,1.00);
+	overflow: hidden;
+	z-index: 999;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	display: inline-block;
+}
+.scroll-notice .icon {
+	flex: 0 0 auto;
+	margin-right: 0.2rem;
+	color: rgba(189,56,42,1.00);
+}
+#scrollotext span {
+	padding-right: 1rem;
+}
+/*应聘通道*/
+.level-reached {
+	background-color: rgba(51,169,117,1.00);
+	margin-bottom: 0.25rem;
+	background-image: url(../images/bjing6.jpg);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	padding: .5rem .35rem .8rem;
+	text-align: center;
+	background-size: 100% auto;
+}
+.level-1 {
+	text-align: center;
+	margin-bottom: 0.3rem;
+}
+.level-2 {
+	margin: 0 auto;
+	padding: 0.2rem 0.5rem;
+	text-align: center;
+	background-color: rgba(229,173,33,1.00);
+	border-radius: 5rem;
+	max-width: 40%;
+	display: inline-block;
+}
+.level-3 {
+	padding: 0.3rem 0;
+	margin-top: 0.3rem;
+}
+.reached-1 {
+	padding: 0.35rem 0.2rem;
+	background-color: rgba(235,235,235,0.50);
+	margin-bottom: 1px;
+	border-radius: 0.1rem;
+}
+.zs-tuan:before, .zs-tuan:after {
+	content: '';
+	display: inline-block;
+	width: 0.3rem;
+	height: 0.3rem;
+	background-image: url(../images/ui/fenlei_c.png);
+	margin: 0 0.25rem;
+	background-size: contain;
+}
+.employ-form {
+	display: flex;
+	flex-flow: column wrap;
+	padding: .5rem .8rem;
+	justify-content: center;
+}
+.employ-form input, .employ-form select {
+	background-color: rgba(255,255,255,1.00);
+	border: 1px solid rgba(225,85,22,1.00);
+	padding: 0.4rem;
+	border-radius: 5rem;
+	margin-bottom: 0.2rem;
+	text-align: left;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+}
+.employ-form select {
+	background-image: url(../images/ui/dzp_djan2.png);
+	background-position: 96% center;
+	background-size: auto 35%;
+	background-repeat: no-repeat;
+}
+.employ-form select:invalid {
+ color:#A8A8A8;
+}
+.employ-form input:last-child {
+	background-color: rgba(225,85,22,1.00);
+	color: rgba(255,255,255,1.00);
+	margin-top: 0.5rem;
+	text-align: center;
+}
+.ypxuzhi {
+	text-align: center;
+}
+.ypxuzhi a {
+	display: inline-block;
+	padding-bottom: 0.05rem;
+	border-bottom: 1px solid currentColor;
+	color: rgba(207,55,5,1.00);
+}
+.no-vip-img {
+	margin: 0.5rem auto;
+	width: 60%;
+}
+.no-vip .zs-tuan {
+	text-align: center;
+	margin-bottom: 0.5rem;
+}
+
+.no-vip p {
+	padding: .3rem;
+	margin: 0.2rem 15%;
+	background-color: rgba(236,236,236,1.00);
+	color: rgba(126,33,33,1.00);
+}
+.no-vip a {
+	margin: 1rem 15% 0;
+	text-align: center;
+	background-color: rgba(225,85,22,1.00);
+	color: rgba(255,255,255,1.00);
+	padding: 0.3rem 0;
+	border-radius: 0.15rem;
+}
+/*招募创业礼包*/
+.vip-zm-heading {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.35rem 0;
+	background-color: rgba(255,255,255,1.00);
+	border-bottom: 1px solid rgba(232,232,232,1.00);
+	color: rgba(51,25,18,1.00);
+	background-repeat: repeat-x;
+}
+.vip-zm-heading:before, .vip-zm-heading:after {
+	content: '';
+	display: block;
+	width: 0.3rem;
+	height: 0.3rem;
+	background-image: url(../images/ui/fenlei_c.png);
+	margin: 0 0.25rem;
+	background-size: contain;
+}
+.vip-lb ul li {
+	background-color: rgba(255,255,255,1.00);
+	margin-bottom: 0.25rem;
+	padding: 0.3rem;
+	display: flex;
+	margin-right: 0rem;
+}
+.vip-lb-1 {
+	border: 1px solid rgba(232,232,232,1.00);
+	width: 3rem;
+	height: 3rem;
+	flex: 0 0 auto;
+	margin-right: 0.3rem;
+}
+.vip-lb-2 {
+	position: relative;
+	flex: 1 1 auto;
+}
+.vip-lb-3 {
+	-webkit-line-clamp: 2;
+	color: rgba(100,97,97,1.00);
+}
+.vip-lb-4 {
+	margin-top: 0.35rem;
+	color: rgba(207,55,5,1.00);
+}
+.vip-lb-5 {
+	position: absolute;
+	bottom: 0px;
+	padding: 0.1rem 0.3rem;
+	right: 0.1rem;
+	background-color: rgba(207,55,5,1.00);
+	color: rgba(255,255,255,1.00);
+	border-radius: 5rem;
+}

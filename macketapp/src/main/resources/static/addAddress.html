@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 37.5px;" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<title>Title</title>
+	<link th:href="@{/css/mui.min.css}"  rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="mui-content">
+	<div class="mui-input-row" style="background-color: white;margin-bottom: 5px;">
+		<label>收货人姓名</label>
+		<input id="realName" type="text" placeholder="请输入收货人姓名">
+	</div>
+
+	<div class="mui-input-row" style="background-color: white;margin-bottom: 5px;">
+		<label>手机号码</label>
+		<input id="telPhone" type="text" placeholder="请输入联系人电话">
+	</div>
+
+	<div class="mui-input-row" style="background-color: white;margin-bottom: 5px;">
+		<label>省</label>
+		<select id="province_select_id" >
+			<option value="">请选择</option>
+			<option th:each="temp,tempSta:${result}" th:value="${temp.id}" th:text="${temp.name}"></option>
+		</select><b style="position: absolute; right: 5px; margin-top: .6em;">▼</b>
+	</div>
+
+	<div class="mui-input-row" style="background-color: white;margin-bottom: 5px;">
+		<label>市</label>
+		<select id="city_select_id">
+			<option value="">请选择</option>
+		</select>
+		<b style="position: absolute; right: 5px; margin-top: .6em;">▼</b>
+	</div>
+
+	<div class="mui-input-row" style="background-color: white;margin-bottom: 5px;">
+		<label>区</label>
+		<select id="area_select_id">
+			<option value="">请选择</option>
+		</select>
+		<b style="position: absolute; right: 5px; margin-top: .6em;">▼</b>
+	</div>
+
+	<div class="mui-input-row" style="background-color: white;margin-bottom: 5px;">
+		<label>详细地址</label>
+		<textarea id="addressz_textarea_id" type="text" placeholder="请输入详细地址"></textarea>
+	</div>
+
+	<div style="text-align: center;margin-top: 20px;">
+		<button id="save_address_id" style="width: 8.6rem;height: 1.6rem;background-color: rgba(225,85,22,1.00);color: white;">保存</button>
+	</div>
+
+
+
+
+</div>
+
+</body>
+<script th:src="@{/js/mui.min.js}" ></script>
+<script type="text/javascript"  th:src="@{/js/jquery-3.3.1.js}"></script>
+<script>
+
+    function  ajaxGetAreaByCityId(id) {
+        $.ajax({
+            url:"/showArea",
+            type:"POST",
+            data:{"id":id},
+            dataType:"JSON",
+            success:function(data){
+                if(data.status == 200){
+                    city_select_id
+                    var option = "<option value=''>请选择</option>";
+                    var city = data.resultMap.city;
+                    $.each(city,function (i,n) {
+                        var temp = "<option value='"+n.id+"'>"+n.name+"</option>";
+                        option = option+temp ;
+                    })
+                    $("#area_select_id").html("");
+                    $("#area_select_id").html(option);
+                }
+            }
+        });
+    }
+
+    function  ajaxAddNewAddress(realName,telPhone,provinceId,cityId,areaId,address) {
+        $.ajax({
+            url:"/addNewAddress",
+            type:"POST",
+            data:{"realName":realName,"telPhone":telPhone,"provinceId":provinceId,
+				"cityId":cityId,"areaId":areaId,"address":address,},
+            dataType:"JSON",
+            success:function(data){
+                if(data.status == 200){
+                    mui.openWindow({
+                        url:'/address'
+                    });
+                }
+            }
+        });
+    }
+
+	function  ajaxGetCityByProvinceId(id) {
+        $.ajax({
+            url:"/showCity",
+            type:"POST",
+            data:{"id":id},
+            dataType:"JSON",
+            success:function(data){
+                if(data.status == 200){
+                    city_select_id
+					var option = "<option value=''>请选择</option>";
+                    var city = data.resultMap.city;
+                    $.each(city,function (i,n) {
+						var temp = "<option value='"+n.id+"'>"+n.name+"</option>";
+                        option = option+temp ;
+                    })
+                    $("#city_select_id").html("");
+                    $("#city_select_id").html(option);
+                }
+            }
+        });
+    }
+    $(function() {
+       $("#province_select_id").on('change',function () {
+		   var id = $(this).val();
+           ajaxGetCityByProvinceId(id)
+       })
+        $("#city_select_id").on('change',function () {
+            var id = $(this).val();
+            ajaxGetAreaByCityId(id)
+        })
+
+    $("#save_address_id").on('tap',function () {
+        var realName = $("#realName").val();
+        var telPhone = $("#telPhone").val();
+        var provinceId = $("#province_select_id").val();
+        var cityId = $("#city_select_id").val();
+        var areaId = $("#area_select_id").val();
+        var address = $("#addressz_textarea_id").val();
+		if(realName != '' & telPhone != '' & provinceId != '' & cityId != ''){
+            ajaxAddNewAddress(realName,telPhone,provinceId,cityId,areaId,address);
+		}else{
+            mui.toast('请录入完整信息',{ duration:'long', type:'div' });
+		}
+    })
+
+    });
+</script>
+
+</html>

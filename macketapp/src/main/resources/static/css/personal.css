@@ -1,0 +1,422 @@
+
+/*个人中心主页*/
+header {
+	padding: .8rem 0 .6rem;
+	text-align: center;
+	color: rgba(255,255,255,1.00);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: relative;
+	min-height: 4rem;
+	overflow: hidden;
+	background-color: rgba(255,255,255,1.00);
+	background-image: url(http://dddz.yiwowmall.com/Content/adlx/images/banner_2.jpg);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	background-size: cover;
+}
+.avatar {
+	width: 1.8rem;
+	margin: 0 auto;
+	height: 1.8rem;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 0.2em solid rgba(255,255,255,0.80);
+}
+header h3 {
+	font-weight: normal;
+	text-align: center;
+	color: rgba(255,255,255,1.00);
+	margin-top: 0.2rem;
+}
+.account {
+	margin-top: 0.2rem;
+	font-family: shuzi_1;
+}
+span:nth-child(1) {
+	margin-right: 0.2rem;
+}
+.pay {
+	position: absolute;
+	top: 0.35rem;
+	right: 0.35rem;
+	padding: 0.15rem 0.4rem;
+	color: rgba(255,255,255,1.00);
+	border: 0.01rem solid #FFFFFF;
+	border-radius: 0.08rem;
+}
+.menu-1 {
+	padding: 0 0.4rem;
+	align-items: center;
+	display: flex;
+	vertical-align: middle;
+	background-color: rgba(255,255,255,1.00);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 1.35rem;
+	background-image: url(http://dddz.yiwowmall.com/Content/adlx/images/ui/jt_1.png);
+	background-repeat: no-repeat;
+	background-position: 96% center;
+	background-size: auto 25%;
+	border-bottom: 1px solid rgba(240,240,240,1.00);
+}
+.menu-1>.icon {
+	font-size: 22px;
+	margin-right: 0.2rem;
+	color: #708DD1;
+}
+[data-dpr="2"] .menu-1>.icon {
+	font-size: 44px;
+}
+.vip-detail {
+	background-color: rgba(255,255,255,1.00);
+}
+.vip-detail .icon {
+	color: #7A7A7A;
+}
+.vip-detail h3 {
+	font-weight: normal;
+	padding: 0rem 0.4rem;
+	border-bottom: 0.02rem solid rgba(237,237,237,1.00);
+	display: flex;
+	align-items: center;
+	height: 1rem;
+}
+.vip ul li {
+	text-align: center;
+	width: 50%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding-top: 0.4rem;
+	padding-right: 0;
+	padding-left: 0;
+	padding-bottom: 0.8rem;
+	box-sizing: border-box;
+	color: rgba(70,70,70,1.00);
+	background-image: url(../images/ui/jt_2.png);
+	background-repeat: no-repeat;
+	background-position: center 95%;
+	background-size: 0.4rem auto;
+	position: relative;
+}
+/*.vip ul li:last-of-type {
+	background-image: none;
+}*/
+.vip-m1 {
+	position: relative;
+	z-index: 50;
+}
+.pop-up {
+	position: absolute !important;
+	top: 0.15rem;
+	left: 0px;
+	right: 0px;
+	z-index: 10;
+	background-color: rgba(248,248,248,0.90);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 2rem 0 0.5rem;
+	margin: auto;
+	width: 90%;
+	border-radius: 0.15rem;
+	border: 0.02rem dashed rgba(155,155,155,1.00);
+	display: none;
+}
+.pop-up a {
+	display: block;
+	background-color: rgba(244,114,113,1.00);
+	color: rgba(255,255,255,1.00);
+	padding: 0.1rem 0;
+	margin: 0.2rem auto 0;
+	width: 80%;
+	border-radius: 0.1rem;
+}
+.vip ul li span, .menu-4 ul li a>span {
+	width: 100%;
+	word-break: break-all;
+	margin-top: 0.35rem;
+	display: block;
+}
+.menu-4 ul li a {
+	color: rgba(81,75,75,1.00);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	align-content: center;
+	justify-content: center;
+}
+.vip ul li span {
+	color: rgba(243,144,20,1.00);
+}
+.menu-4 {
+	margin: 0.2rem 0;
+	background-color: rgba(255,255,255,1.00);
+	color: rgba(221,95,9,1.00);
+	position: relative;
+	z-index: 10;
+}
+.menu-4 ul {
+	flex-flow: row wrap;
+	justify-content: flex-start;
+}
+.menu-4 ul li {
+	width: 25%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border-bottom: 0.02rem solid rgba(240,240,240,1.00);
+	border-right: 0.02rem solid rgba(240,240,240,1.00);
+	color: rgba(81,75,75,1.00);
+	height: 2.5rem;
+}
+.menu-4 .icon {
+	font-size: 24px;
+	text-shadow: 0px 0px;
+	-webkit-box-shadow: 0px 0px;
+	box-shadow: 0px 0px;
+}
+.menu-4 .one {
+	color: #FAC227;
+}
+.menu-4 .two {
+	color: #4BCC8D;
+}
+.menu-4 .three {
+	color: #48B3DD;
+}
+.menu-4 .four {
+	color: #F47271;
+}
+[data-dpr="2"] .menu-4 .icon {
+	font-size: 48px;
+}
+.logout input {
+	display: block;
+	margin: 0.6rem auto;
+	padding: 0.35rem 0;
+	width: 8rem;
+	background-color: #43C08C;
+	border: 0;
+	color: rgba(255,255,255,1.00);
+}
+/*会员帐户*/
+.accordion {
+	width: 100%;
+}
+.accordion li {
+	margin-bottom: 0.02rem;
+	background-color: rgba(255,255,255,1.00);
+	border-bottom: 1px solid rgba(240,240,240,1.00);
+}
+.accordion .link {
+	display: block;
+	position: relative;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	padding: 0.35rem 0.3rem 0.3rem 0.4rem;
+	transition: all 0.4s ease;
+	background-color: rgba(255,255,255,1.00);
+}
+.accordion li:last-child .link {
+	border-bottom: 0;
+}
+.accordion li .fa-chevron-down {
+	color: #595959;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+.accordion li .fa-chevron-down {
+	color: rgba(191,191,191,1.00);
+}
+.accordion li.open .link {
+	color: #b63b4d;/*font-weight: bold;*/
+}
+.accordion li.open .icon {
+	color: #b63b4d;
+}
+.accordion li.open .fa-chevron-down {
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+.accordion li.default .submenu {
+	display: block;
+}
+.submenu {
+	display: none;
+	padding-bottom: 0.25rem;
+	margin-top: -0.2rem;
+	position: relative;
+	z-index: 120;
+	color: rgba(140,140,140,1.00);
+}
+.submenu li {
+	padding: 0 0.35rem;
+}
+.wandou {
+	color: rgba(85,85,85,1.00);
+	margin-right: 0.2rem;
+}
+.wandou-s {
+	margin-left: 0.25rem;
+}
+.zi_an {
+	padding-left: 1.2rem;
+	padding-top: 0.25rem;
+}
+.zi_an a {
+	display: inline-block;
+	color: rgba(255,255,255,1.00);
+	background-color: rgba(182,59,77,1.00);
+	margin-right: 0.2rem;
+	width: 2.4rem;
+	padding: 0.1rem 0;
+	text-align: center;
+	border-radius: 0.1rem;
+}
+.jin {
+	color: rgba(247,181,9,1.00) !important;
+}
+.yin {
+	color: rgba(187,189,197,1.00) !important;
+}
+.quan {
+	color: rgba(237,135,46,1.00) !important;
+}
+.vip {
+	position: relative;
+	z-index: 300;
+	background-color: #FFFFFF;
+}
+.b-b-j {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0px;
+	background-color: transparent;
+	z-index: 200;
+	display: none;
+}
+.vip-gl-list {
+	background-color: rgba(255,255,255,1.00);
+	padding: 0.3rem 0 0.5rem;
+	margin-bottom: 0.25rem;
+}
+.vip-gl-list h3 {
+	padding: 0.3rem 0.4rem;
+	color: rgba(35,34,32,1.00);
+	border-bottom: 1px solid rgba(232,232,232,1.00);
+	margin-bottom: 0.5rem;
+		background-image: url(http://dddz.yiwowmall.com/Content/adlx/images/ui/jt_1.png);
+	background-repeat: no-repeat;
+	background-position: 96% center;
+	background-size: auto 25%;
+}
+
+.vip-gl-list ul li {
+width: 33.33%;
+	text-align: center;
+	position: relative;
+}
+.vip-gl-list ul li>span {
+	display: block;
+	margin-bottom: 0.3rem;
+	color: rgba(50,46,46,1.00);
+	font-family: shuzi_3;
+}
+.vip-gl-list ul li>.icon {
+	width: 0.7rem;
+	height: 0.7rem;
+	margin-bottom: 0.2rem;
+	color: rgba(183,137,24,1.00);
+}
+.integrity {
+	margin: 0.3rem 0.5rem;
+}
+
+.integrity img {
+	margin: 0 auto;
+	width: 40%;
+	display: block;
+}
+.integrity p {
+	text-indent: 8%;
+	text-align: justify;
+}
+/*修改个人资料*/
+.amend ul li {
+	display: flex;
+	justify-content: space-between;
+	padding: .5rem .4rem;
+	align-items: center;
+	background-color: rgba(255,255,255,1.00);
+	border-bottom: 1px solid rgba(243,243,243,1.00);
+
+}
+.xgkey ul li {
+	margin: 0.3rem;
+	border-radius: 0.1rem;
+}
+
+.tuxiang-up {
+	width: 1.5rem;
+	height: 1.5rem;
+	border: 1px solid rgba(243,243,243,1.00);
+	border-radius: 50%;
+	overflow: hidden;
+	background-position: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.tuxiang-up >input[type=file] {
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+}
+.amend ul li input {
+	border: 0;
+	border-radius: 0;
+	background-color: transparent;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+	width: 7rem;
+}
+.save {
+	margin: 0.5rem auto;
+	display: block;
+	width: 95%;
+	padding: 0.35rem 0;
+	border: 0;
+	outline: none;
+	border-radius: 0.1rem;
+	background-color: rgba(225,85,22,1.00);
+	color: rgba(255,255,255,1.00);
+}
+.num-z {
+	position: absolute;
+	top: -0.2rem;
+	right: 0.5rem;
+	padding: 0 0.05rem;
+	min-width: 0.42rem;
+	height: 0.42rem;
+	border-radius: 10rem;
+	overflow: hidden;
+	background-color: #C93436;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	box-sizing: border-box;
+}

@@ -1,0 +1,451 @@
+﻿@charset "utf-8";
+/*银行卡管理 & 收货地址管理 & 选择地址 & 区域代理报表*/
+
+/*银行卡管理*/
+.biaodan-1 ul li {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.4rem 0.25rem;
+	align-items: baseline;
+	background-color: rgba(255,255,255,1.00);
+	margin-bottom: 0.15rem;
+}
+.biaodan-1 ul li>div:nth-child(1) {
+	width: 2rem;
+}
+.biaodan-1 ul li select:invalid {
+ color:#A8A8A8;
+}
+.biaodan-1 ul li input, .biaodan-1 ul li select, .biaodan-1 ul li textarea {
+	flex: 1 1 auto;
+	border: 0;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+.biaodan-1 ul li select {
+	direction: rtl;
+	background-color: transparent;
+}
+.biaodan-1 ul li textarea {
+	height: 1.5rem;
+}
+.tijiao input {
+	width: 9.6rem;
+	margin-top: 0.5rem;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 0;
+	height: 1.35rem;
+	border: 0;
+	display: block;
+	background-color: rgba(225,85,22,1.00);
+	color: rgba(255,255,255,1.00);
+	border-radius: 0.1rem;
+}
+/*收货地址管理*/
+.sh-address ul li {
+	padding: 0.25rem;
+	flex-flow: row wrap;
+	background-color: rgba(255,255,255,1.00);
+	margin-bottom: 0.25rem;
+}
+.sh-add {
+	width: 100%;
+	padding: .15rem 0 .25rem;
+	flex: 1 1 auto;
+	background-image: url(../images/ui/dashed.png);
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	margin-bottom: 0rem;
+}
+.sh-default, .sh-button {
+	padding-top: 0.25rem;
+}
+.sh-default input {
+	display: none;
+}
+.sh-default span {
+	padding-left: 0.55rem;
+	background-image: url(../images/ui/radio_1.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-size: auto 200%;
+}
+.sh-default input:checked+span {
+	background-position: left bottom;
+}
+.sh-button span {
+	padding-left: 0.3rem;
+}
+.addition {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: 0 auto;
+	/* [disabled]width: 10rem;
+*/
+	text-align: center;
+	color: #FFFFFF;
+	padding: 0.4rem 0;
+	background-color: #43C08C;
+}
+.addition-1 {
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	margin: 0 auto;
+	text-align: center;
+	color: #FFFFFF;
+	padding: 0.4rem 0;
+	background-color: #E15516;
+	bottom: 0px;
+}
+.back {
+	position: absolute;
+	left: 0.4rem;
+}
+/*选择地址*/
+.select_address {
+}
+.select_address ul li {
+	margin-top: 0.2rem;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 0;
+	width: 96%;
+	padding: 0.2rem;
+	background-color: rgba(255,255,255,1.00);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.select_address ul li label {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	padding-right: 1.2rem;
+	position: relative;
+}
+.select_address ul li label div:nth-child(3) {
+	flex: 1 1 100%;
+	margin-top: 0.1rem;
+}
+.choose-t {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	margin: auto;
+	right: 0.2rem;
+}
+.choose-t>input {
+	display: none;
+}
+.choose-t>span {
+	width: 0.5rem;
+	height: 0.5rem;
+	background-image: url(../images/ui/radio_1.png);
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: cover;
+}
+.choose-t>input:checked+span {
+	background-position: center bottom;
+}
+.edit_address {
+	position: absolute;
+	right: 0.4rem;
+	top: 0px;
+	bottom: 0px;
+}
+.edit_address a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: rgba(255,255,255,1.00);
+}
+/*区域代理报表*/
+.statement {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+.m-bt {
+	margin-bottom: 0.2rem;
+}
+.header {
+	background-color: #E93A43;
+	color: #FFFFFF;
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	z-index: 200;
+	margin: 0 auto;
+	width: 10rem;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	display: flex;
+}
+.statement div {
+	background-color: rgba(255,255,255,1.00);
+	padding: 0.4rem 0;
+	flex: 1 1 50%;
+	text-align: center;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border-right-color: rgba(240,240,240,1.00);
+	border-bottom-color: rgba(240,240,240,1.00);
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+}
+.statement span {
+	display: block;
+	color: #F47271;
+	text-align: center;
+	margin-top: 0.25rem;
+	margin-right: 0;
+	margin-left: 0;
+}
+.statement div:nth-child(1) {
+	flex: 1 100%;
+}
+.statement div input {
+	width: 2.4rem;
+	background-color: rgba(244,114,113,1.00);
+	border: 0;
+	color: rgba(255,255,255,1.00);
+	padding: 0.1rem 0;
+	border-radius: 1.2rem;
+	margin-top: 0.2rem;
+}
+/*区域报表详情*/
+.accordion {
+	width: 100%;
+}
+.accordion> li {
+	background-color: rgba(255,255,255,1.00);
+	border-bottom: 0.02rem solid #F0F0F0;
+}
+.accordion .link {
+	display: block;
+	color: rgba(91,91,91,1.00);
+	position: relative;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	padding: 0.35rem;
+	transition: all 0.4s ease;
+	background-color: rgba(255,255,255,1.00);
+}
+.accordion li:last-child .link {
+	border-bottom: 0;
+}
+.accordion li .fa-chevron-down {
+	color: #595959;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+.accordion li .fa-chevron-down {
+	color: rgba(191,191,191,1.00);
+}
+.accordion li.open .link {
+	color: #F47271;
+}
+.accordion li.open .icon {
+	color: #F47271;
+}
+.accordion li.open .fa-chevron-down {
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+.accordion li.default .submenu {
+	display: block;
+}
+.submenu {
+	display: none;
+	padding: 0 0.5rem 0.25rem;
+	margin-top: -0.2rem;
+	position: relative;
+	z-index: 120;
+	color: rgba(140,140,140,1.00);
+}
+.submenu li {
+	padding: 0 0.35rem;
+}
+/*提现&充值*/
+.tixian {
+	margin: 0.4rem auto;
+	width: 9.4rem;
+	padding: 0.6rem 0.4rem;
+	background-color: rgba(255,255,255,1.00);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border-radius: 0.15rem;
+}
+.tixian-1 {
+	padding-bottom: 0.4rem;
+	border-bottom: 0.02rem solid rgba(240,240,240,1.00);
+}
+.tixian-1 div {
+	display: inline-block;
+}
+.tixian-1 div:nth-child(2) {
+	color: rgba(251,75,42,1.00);
+	margin-left: 0.4rem;
+}
+.tixian-2 {
+	padding: 0.4rem 0 0.1rem;
+}
+.tixian-3 form {
+	position: relative;
+	background-color: rgba(251,251,251,1.00);
+	border-radius: 0.1rem;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding: 0 0.1rem;
+	box-sizing: border-box;
+}
+.tixian-3 .srsz {
+	padding: .6rem .8rem .6rem .2rem;
+	border: 0;
+	border-radius: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	background-color: transparent;
+	outline: none;
+}
+.tixian-4 {
+	padding: 0.25rem 0;
+}
+.tixian-4 input {
+	border-radius: 0;
+	margin: 0;
+	border: 0;
+	padding-right: 0.2rem;
+	color: rgba(251,75,42,1.00);
+	background-color: transparent;
+}
+.tixian-ok input {
+	width: 100%;
+	border: 0;
+	height: 1.2rem;
+	background-color: rgba(67,192,140,1.00);
+	color: rgba(255,255,255,1.00);
+	margin-top: 0.6rem;
+	border-radius: 0.1rem;
+}
+/*豌豆转出*/
+.transfer-top {
+	height: 1.35rem;
+	background-color: rgba(67,192,140,1.00);
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	margin: 0 auto;
+	padding: 0 .25rem;
+	width: 10rem;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.transfer-top a {
+	color: rgba(255,255,255,1.00);
+}
+.transfer-top a:first-child {
+	transform: rotate(90deg)
+}
+.transfer-sum ul li {
+	padding: 0.6rem 0.35rem;
+	background-color: rgba(255,255,255,1.00);
+	border-bottom: 1px solid rgba(240,240,240,1.00);
+	display: flex;
+	color: rgba(102,102,102,1.00);
+}
+.transfer-sum ul li span {
+	flex: 0 0 auto;
+	width: 2rem;
+	margin-right: 0.3rem;
+}
+.transfer-sum ul li div:nth-child(2) {
+	flex: 1 1 auto;
+	border-radius: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: middle;
+	width: 100%;
+}
+.nickname {
+	margin-top: 0.2rem;
+}
+.transfer-sum ul li input {
+	border-radius: 0;
+	padding: 0;
+	border: 0;
+	width: 100%;
+	background-color: rgba(255,255,255,1.00);
+}
+.transfer-sum ul li input::-webkit-input-placeholder {
+ line-height:0.5rem;
+}
+/*没有余额明细*/
+.sold_out {
+	text-align: center;
+	/* [disabled]padding-top: 1rem;
+*/
+	margin-top: 2rem;
+}
+.sold_out div:nth-child(1) {
+	margin: 0 auto;
+	width: 45%;
+}
+.sold_out div:nth-child(2) {
+	padding: 0.4rem 0;
+	margin: 0 auto;
+	color: #8A8A8A;
+}
+.fund-l-1 {
+	height: 1.5rem;
+	display: flex !important;
+	justify-content: space-between;
+	padding: 0 .2rem !important;
+	align-items: center;
+}
+.fund-w1 {
+	width: 20%;
+	text-align: left;
+	flex: 0 0 auto;
+	padding-left: 0.3rem;
+}
+.fund-w2 {
+	width: 40%;
+	text-align: center;
+	flex: 0 0 auto;
+}
+.fund-w3 {
+	width: 30%;
+	text-align: center;
+	flex: 1 1 auto;
+}
+
+.weixin {
+	margin: 1.5rem;
+	height: 1.3rem;
+	border-radius: 5rem;
+	background-color: #20AD3C;
+	justify-content: center;
+}
+

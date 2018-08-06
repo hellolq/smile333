@@ -1,0 +1,146 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background-color: rgba(255,255,255,1.00);
+}
+html, body, div, p, form, label, ul, li, dl, dt, dd, ol, img, button, b, em, strong, small, h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+/*切换&结构*/
+ .left-menu::-webkit-scrollbar {
+width: 0px;
+}
+/*.main {
+	overflow: hidden;
+}*/
+.left-menu {
+	width: 22%;
+	background-color: #eee;
+	position: absolute;
+	overflow-y: scroll;
+	left: 0rem;
+	top: 0rem;
+	bottom: 1.4rem;
+}
+.left-menu ul li {
+	text-align: center;
+	color: #333;
+	border-bottom: 1px solid #FFFFFF;
+	line-height: 1.4rem;
+	height: 1.4rem;
+	background-color: #F3F4F6;
+}
+.left-menu ul li.active {
+	color: #C42C1C;
+	display: block;
+	text-align: center;
+	background: #fff;
+	border-left: 0.08rem solid #B4171A;
+	border-right: 1px solid #fff;
+	border-top: 1px none #FFFFFF;
+	border-bottom: 0.01rem solid #EFEFEF;
+}
+.con {
+	height: auto;
+	width: 78%;
+	position: absolute;
+	top: 0rem;
+	right: 0rem;
+	bottom: 1.4rem;
+	
+}
+.right-con {
+	display: none;
+	width: 100%;
+	overflow-y: scroll;
+	background: #fff;
+	position: absolute;
+	top: 0rem;
+	right: 0rem;
+	bottom: 0rem;
+
+}
+.con .con-active {
+	display: block;
+}
+/* 右边商品列表*/
+.main {
+	top: 0px;
+
+}
+
+.pic-show {
+	height: 4rem;
+	width: 100%;
+	position: relative;
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+.pic-show img {
+	margin: auto;
+	position: absolute;
+	top: 0rem;
+	right: 0rem;
+	bottom: 0rem;
+	left: 0rem;
+}
+.wall {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0.25rem 0.15rem;
+	justify-content: space-between;
+}
+.wall:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.wall-column {
+	display: block;
+	position: relative;
+	width: 50%;
+	float: left;
+	padding: 0 .1rem;
+	box-sizing: border-box;
+}
+.article {
+	margin-top: 0;
+	margin-right: 0;
+	margin-left: 0;
+	margin-bottom: 0.25rem;
+	background: white;
+	position: relative;
+	border: 1px solid #F0F0F0;
+	width: 48%;
+	/* [disabled]display: inline-block;
+*/
+	/* [disabled]-webkit-box-sizing: border-box;
+*/
+	/* [disabled]-moz-box-sizing: border-box;
+*/
+	/* [disabled]box-sizing: border-box;
+*/
+}
+.article a {
+	width: 100%;
+	height: 100%;
+}
+.pr_title {
+	margin: 0.25rem 0;
+	padding: 0 0.1rem;
+	-webkit-line-clamp: 1;
+}
+.pr_cost {
+	padding: 0rem 0.1rem 0.25rem 0.1rem;
+	font-family: shuzi_1;
+	letter-spacing: -1px;
+}
+.pr_cost_y {
+	color: rgba(175,175,175,1.00);
+	text-decoration: line-through;
+	margin-left: 0.1rem;
+}

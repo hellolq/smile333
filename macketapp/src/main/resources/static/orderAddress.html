@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 37.5px;" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+	<title>Title</title>
+	<link  th:href="@{/css/mui.min.css}"  rel="stylesheet" type="text/css">
+	<style>
+		.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before {
+			font-family: Muiicons;
+			font-size: 20px;
+			font-weight: 400;
+			line-height: 1.5;
+			text-decoration: none;
+			color: #aaa;
+			border-radius: 0;
+			background: 0 0;
+			-webkit-font-smoothing: antialiased;
+		}
+
+		.mui-checkbox.mui-left label, .mui-radio.mui-left label {
+			padding-left: 48px;
+		}
+
+	</style>
+</head>
+<body>
+<div style="background-color: #CF3705;display: flex;height: 1.5rem;color: white;">
+	<span id="return_last" style="color: white;margin-top: .4rem;"><i class="mui-icon mui-icon-back"></i>返回</span>
+</div>
+
+<div style="margin-top: .1rem;">
+	<ul style="margin: 0;padding: 0;margin-bottom: 100px;">
+		<li style="display: block;background-color: white;margin-bottom: 8px;" th:each="temp,resultStat:${result}" >
+			<div class="mui-row" style="padding-top: .2rem;padding-bottom: .2rem;">
+				<span class="mui-col-xs-6" style="font-size: .3rem;padding-left: .3rem;" th:text="${temp.name}">李生</span>
+				<span class="mui-col-xs-6" style="text-align: right;font-size: .3rem;padding-right: .3rem;" th:text="${temp.tel}">13926285065</span>
+			</div>
+
+			<div class="mui-row" style="font-size: .3rem;padding: .3rem;background-repeat:repeat-x ;background-position:0% bottom ;
+       				background-image: url(http://dddz.yiwowmall.com/Content/adlx/images/ui/dashed.png);" th:text="${temp.address}">湖南省长沙市岳麓区上海城</div>
+			<div class="mui-row">
+				<div class="mui-radio mui-left mui-col-xs-6" style="height: 32px;">
+					<label style="font-size: .3rem;line-height: 1rem;">设置为默认地址</label>
+					<input name="recive_address" type="radio" th:value="${temp.id}" th:if="${resultStat.first}" checked="checked">
+					<input name="recive_address" type="radio" th:value="${temp.id}" th:if="${not resultStat.first}" >
+				</div>
+				<div th:address_id="${temp.id}" class="mui-col-xs-3 editAddress" style="font-size: .3rem;line-height: 1rem;text-align: right;">编辑</div>
+				<div th:address_id="${temp.id}" class="mui-col-xs-3 delAddress" style="font-size: .3rem;line-height: 1rem;text-align: right;padding-right: .6rem;">删除</div>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<div id="addNewAddress" style="position: fixed;height: 1.4rem;width: 100%;bottom: 0;"><button style="width: 100%;color: white;
+       	height: 100%;background-color: #E15516;;">新增收货地址</button></div>
+</body>
+<script th:src="@{/js/mui.min.js}" ></script>
+<script th:src="@{/js/jquery-3.3.1.js}" type="text/javascript" ></script>
+<script>
+	
+	function  updateAddress(id) {
+        $.ajax({
+            url:"/updateDefaultAddress",
+            type:"POST",
+            data:{"id":id},
+            dataType:"JSON",
+            success:function(data){
+                if(data.status == 200){
+                    mui.toast('修改成功',{ duration:'long', type:'div' });
+                }
+            }
+        });
+    }
+
+    function  delAddress(id,target) {
+        $.ajax({
+            url:"/delAddress",
+            type:"POST",
+            data:{"id":id},
+            dataType:"JSON",
+            success:function(data){
+                if(data.status == 200){
+                    target.parent().parent().remove();
+                }
+            }
+        });
+    }
+	
+    $(function() {
+
+        $("#addNewAddress").click(function() {
+            var webview = mui.openWindow({
+                url:'/toAaddNewAddressPage'
+            });
+        });
+        $("body").on('change','input:radio[name=recive_address]',function () {
+            var deault_new = $(this).val();
+            updateAddress(deault_new);
+        })
+		
+		$("#return_last").on('tap',function () {
+           var url = document.referrer;
+            var webview = mui.openWindow({
+                url: url
+            });
+        })
+		
+		$(".delAddress").on('tap',function () {
+		    var id = $(this).attr("address_id");
+            delAddress(id,$(this));
+        });
+        $(".editAddress").on('tap',function () {
+            var id = $(this).attr("address_id");
+            var url = "/editAddress/"+id;
+            var webview = mui.openWindow({
+                url: url
+            });
+        });
+
+
+
+    });
+</script>
+
+</html>

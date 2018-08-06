@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html style="height: 100%;font-size: 37.5px;" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link th:href="@{/css/global_style.css}" rel="stylesheet">
+		<link th:href="@{/css/layer.css}" type="text/css" rel="styleSheet" id="layermcss">
+		<link th:href="@{/css/main.css}" rel="stylesheet">
+	</head>
+	<style>
+
+	</style>
+
+	<body style="height: 100%;">
+
+		<div style="background-color: #CF3705;display: flex;height: 1.5rem;color: white;">
+			<div class="mui-input-row mui-checkbox mui-left" style="line-height: 1.5rem;">
+				<label>全选</label>
+				<input id="goodCart_checkbox_all" name="goodCart_checkbox_all" value="Item2" type="checkbox" style="line-height: 1.3rem;">
+			</div>
+			<span id="del_cart_id" style="line-height: 1.5rem;position: absolute;right: 8px;">删除</span>
+		</div>
+
+			<div class="mui-scroll-wrapper" style="top: 50px;bottom: 100px;">
+				<div class="mui-scroll">
+			<ul style="margin: 0px;padding: 0px;background-color: white;padding: 20px 0;">
+				<li style="display: flex;margin: 0px;padding: 0px;height: auto;background-color: white;position: relative;
+					margin-bottom: 10px;background-color: rgba(255,255,255,1.00); 
+					background-image: url(http://dddz.yiwowmall.com/Content/adlx/images/ui/dashed.png); 
+					background-repeat: repeat-x; background-position: left bottom;padding-bottom: 10px;" th:each="goodsCart,goodsCartStat:${goodsCart}" >
+					<div style="flex: 1;">
+						<div class="mui-input-row mui-checkbox mui-left" style="margin-top: 20px;">
+							<label style="height: 40px;padding-right: 1px;"></label>
+							<input class="goodCart_checkbox_class" name="goodCart_checkbox" th:value="${goodsCart.salesprice}" th:goodsId="${goodsCart.goodsid}"
+								   th:goodsNum="${goodsCart.number}" th:cartId="${goodsCart.id}" type="checkbox">
+						</div>
+					</div>
+					<div style="flex: 10;display: flex;padding: 5px;">
+						<div style="flex: 1;border: 1px solid rgba(240,240,240,1.00);margin-right: 5px;">
+							<img height="100%" width="100%" th:src="'http://rs.yiwowmall.com/api/GetResources/'+${goodsCart.coverImgId}" />
+						</div>
+						<div style="flex: 3;display: flex;flex-direction: column;position: relative;">
+							<span style="font-size: 14px;flex: 1;" th:text="${goodsCart.name}"></span>
+							<span style="font-size: 14px;flex: 1;position: absolute;bottom: 3px;color: red;" th:text="'￥'+${goodsCart.salesprice}">￥39.90</span>
+						</div>
+					</div>
+					<div class="mui-numbox" style="width: 120px;height: 30px;position: absolute; right: 5px; bottom: 5px;">
+						<button class="mui-btn-numbox-minus" type="button">-</button>
+						<input class="mui-input-numbox" type="number" th:value="${goodsCart.number}"  />
+						<button class="mui-btn-numbox-plus" type="button">+</button>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+				</div>
+
+		<!--
+        	作者：liqiaoyes@qq.com
+        	时间：2018-07-09
+        	描述：去结算
+        -->
+		<div style="display: flex; height: 51px; position: absolute; width: 100%;bottom: 52px;font-size: 12px;z-index: 9;">
+			<div style="flex: 3;background-color: white;line-height: 51px;text-align: left;padding-left: 8px;">
+				<span>合计：</span>
+				<span id="xsje_sum_id"  style="color: red;">￥0</span>
+				<span>含运费（￥0.00）</span>
+			</div>
+			<div id="to_pay_id" style="flex: 1;background-color: #CF3705;color:white;line-height: 51px;text-align: center;font-size: 18px;">
+				去结算
+			</div>
+		</div>
+		<!--
+        	作者：liqiaoyes@qq.com
+        	时间：2018-07-09
+        	描述：底部导航栏
+        -->
+		<footer class="wzdx_11">
+			<ul>
+				<li>
+					<a th:href="${mapUrl.index}">
+						<svg class="WDSC_MainPage icon nav-dx sty-k" aria-hidden="true">
+							<use xlink:href="#icon-home_light"></use>
+						</svg>
+						<svg class="WDSC_MainPage icon nav-dx sty-s" aria-hidden="true" style="display: none;">
+							<use xlink:href="#icon-home_fill_light"></use>
+						</svg>
+						首页
+					</a>
+				</li>
+				<li>
+					<a th:href="${mapUrl.category}">
+						<svg class="Category icon nav-dx sty-k" aria-hidden="true">
+							<use xlink:href="#icon-fenlei"></use>
+						</svg>
+						<svg class="Category icon nav-dx sty-s" aria-hidden="true" style="display: none;">
+							<use xlink:href="#icon-fenlei_fill"></use>
+						</svg>
+						分类
+					</a>
+				</li>
+				<li>
+					<a th:href="${mapUrl.vipPage}">
+						<svg class="Vip icon nav-dx sty-k" aria-hidden="true">
+							<use xlink:href="#icon-vip"></use>
+						</svg>
+						<svg class="Vip icon nav-dx sty-s" aria-hidden="true" style="display: none;">
+							<use xlink:href="#icon-vip"></use>
+						</svg>
+						VIP导购专区
+					</a>
+				</li>
+
+				<li>
+					<a th:href="${mapUrl.goodsCart}" class="now-col">
+						<svg class="Personal_Cart icon nav-dx sty-k" aria-hidden="true" style="display: none;">
+							<use xlink:href="#icon-cart_light"></use>
+						</svg>
+						<svg class="Personal_Cart icon nav-dx sty-s" aria-hidden="true">
+							<use xlink:href="#icon-cart_fill_light"></use>
+						</svg>
+						购物车
+					</a>
+				</li>
+
+				<li>
+					<a th:href="${mapUrl.orderCenter}">
+						<svg class="ShoPorDers icon nav-dx sty-k" aria-hidden="true">
+							<use xlink:href="#icon-my_light"></use>
+						</svg>
+						<svg class="ShoPorDers icon nav-dx sty-s" aria-hidden="true" style="display: none;">
+							<use xlink:href="#icon-my_fill_light"></use>
+						</svg>
+						订单中心
+					</a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+	<script>
+
+
+
+		function  delete_cart(cartId) {
+            $.ajax({
+                url:"/deleteCart",
+                type:"POST",
+				data:{"cartId":cartId},
+                dataType:"JSON",
+                success:function(data){
+                   if(data.status == 200){
+                       $("input:checkbox[name='goodCart_checkbox']:checked").each(function () {
+						   $(this).parent().parent().parent().remove();
+                       });
+				   }
+                }
+            });
+
+        }
+
+		function getSumXsje(){
+            var sum_xsje = 0;
+            $("input:checkbox[name='goodCart_checkbox']:checked").each(function(){
+                var unit_price = $(this).val();
+                //var goods_id = $(this).attr("goodsId");
+                var goods_num = $(this).attr("goodsNum");
+                sum_xsje = (unit_price * goods_num)+sum_xsje;
+
+            });
+            $("#xsje_sum_id").html("￥"+sum_xsje);
+		}
+
+		$(function() {
+
+            mui('.mui-scroll-wrapper').scroll({
+                deceleration: 0.0005
+            });
+
+			$("#goodCart_checkbox_all").change(function() {
+				var flag = $("input:checkbox[name='goodCart_checkbox_all']").is(":checked");
+				if(flag){
+					$("input:checkbox[name='goodCart_checkbox']").prop('checked',true);
+				}else{
+					$("input:checkbox[name='goodCart_checkbox']").prop('checked',false);
+				}
+			});
+			
+			$("input:checkbox[name='goodCart_checkbox']").change(function() {
+				var is_checked_account = $("input:checkbox[name='goodCart_checkbox']:checked").length;
+				var all = $("input:checkbox[name='goodCart_checkbox']").length;
+				if(is_checked_account == all){
+					$("#goodCart_checkbox_all").prop('checked',true);
+				}else{
+					$("#goodCart_checkbox_all").prop('checked',false);
+				}
+
+                getSumXsje();
+
+			});
+
+            mui("body").on('change',".mui-input-numbox",function(){
+               var temp_val = $(this).val();
+
+               if(temp_val < 1){
+                   $(this).val(1);
+                   return;
+			   }else{
+                   $($(this).parent().parent().find(".goodCart_checkbox_class")[0]).attr("goodsNum",temp_val);
+                   if($($(this).parent().parent().find(".goodCart_checkbox_class")[0]).is(":checked")){
+                       getSumXsje();
+				   }
+			   }
+            })
+
+			$("#del_cart_id").on('tap',function () {
+			    var cart_id = "";
+                $("input:checkbox[name='goodCart_checkbox']:checked").each(function () {
+                    cart_id =cart_id+","+$(this).attr("cartId");
+                })
+				if(cart_id != ""){
+                    delete_cart(cart_id.substr(1));
+				}
+            });
+            
+
+            //to_pay_id
+			$("#to_pay_id").on('tap',function () {
+                var cart_id = "";
+                $("input:checkbox[name='goodCart_checkbox']:checked").each(function () {
+                    cart_id =cart_id+","+$(this).attr("cartId");
+                })
+                if(cart_id != ""){
+                    mui.openWindow({
+                        id:'to_pay_id' ,
+                        url:'/subOrdeList/'+cart_id.substr(1)
+                    });
+                }else{
+                    mui.toast('请选择要结算商品',{ duration:'long', type:'div' });
+				}
+            });
+
+
+
+		});
+	</script>
+
+</html>

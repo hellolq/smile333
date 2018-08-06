@@ -1,0 +1,1071 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smile.mapper.ShopGoodsDOMapper">
+  <resultMap id="BaseResultMap" type="com.smile.pojo.ShopGoodsDO">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Collating" jdbcType="INTEGER" property="collating" />
+    <result column="SupplierId" jdbcType="INTEGER" property="supplierid" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="ShortInfo" jdbcType="VARCHAR" property="shortinfo" />
+    <result column="CategoryId" jdbcType="INTEGER" property="categoryid" />
+    <result column="MarketNumber" jdbcType="INTEGER" property="marketnumber" />
+    <result column="Weight" jdbcType="DECIMAL" property="weight" />
+    <result column="CoverImgId" jdbcType="VARCHAR" property="coverimgid" />
+    <result column="RollImages" jdbcType="VARCHAR" property="rollimages" />
+    <result column="MarketPrice" jdbcType="DECIMAL" property="marketprice" />
+    <result column="SalesPrice" jdbcType="DECIMAL" property="salesprice" />
+    <result column="CostPrice" jdbcType="DECIMAL" property="costprice" />
+    <result column="PV" jdbcType="DECIMAL" property="pv" />
+    <result column="Inventory" jdbcType="INTEGER" property="inventory" />
+    <result column="WarningInventory" jdbcType="INTEGER" property="warninginventory" />
+    <result column="IsNorm" jdbcType="TINYINT" property="isnorm" />
+    <result column="IsPutaway" jdbcType="TINYINT" property="isputaway" />
+    <result column="IsOnSale" jdbcType="TINYINT" property="isonsale" />
+    <result column="IsSpecialGoods" jdbcType="TINYINT" property="isspecialgoods" />
+    <result column="IsHot" jdbcType="TINYINT" property="ishot" />
+    <result column="IsNew" jdbcType="TINYINT" property="isnew" />
+    <result column="UnitsTitle" jdbcType="VARCHAR" property="unitstitle" />
+    <result column="IsEnabled" jdbcType="TINYINT" property="isenabled" />
+    <result column="IsDeleted" jdbcType="TINYINT" property="isdeleted" />
+    <result column="CreateTime" jdbcType="BIGINT" property="createtime" />
+    <result column="UpdateTime" jdbcType="BIGINT" property="updatetime" />
+    <result column="GoodsCode" jdbcType="VARCHAR" property="goodscode" />
+    <result column="AuditReason" jdbcType="VARCHAR" property="auditreason" />
+    <result column="ExpressTemplateId" jdbcType="INTEGER" property="expresstemplateid" />
+    <result column="UserPercent" jdbcType="DECIMAL" property="userpercent" />
+    <result column="FatherPercent" jdbcType="DECIMAL" property="fatherpercent" />
+    <result column="IsPublicGoods" jdbcType="TINYINT" property="ispublicgoods" />
+    <result column="PublicPercent" jdbcType="DECIMAL" property="publicpercent" />
+    <result column="IsExchangeGoods" jdbcType="TINYINT" property="isexchangegoods" />
+    <result column="Homepurchaserestrictions" jdbcType="VARCHAR" property="homepurchaserestrictions" />
+    <result column="Timing" jdbcType="BIGINT" property="timing" />
+    <result column="Timeframe" jdbcType="BIGINT" property="timeframe" />
+    <result column="PublicNumber" jdbcType="INTEGER" property="publicnumber" />
+    <result column="PublicInventory" jdbcType="INTEGER" property="publicinventory" />
+    <result column="CutDownTime" jdbcType="INTEGER" property="cutdowntime" />
+    <result column="LowPrice" jdbcType="DECIMAL" property="lowprice" />
+    <result column="HighPrice" jdbcType="DECIMAL" property="highprice" />
+    <result column="IsBargainGoods" jdbcType="TINYINT" property="isbargaingoods" />
+    <result column="Cheap" jdbcType="DECIMAL" property="cheap" />
+    <result column="MaxUseIntegral" jdbcType="INTEGER" property="maxuseintegral" />
+    <result column="IsLuckGoods" jdbcType="TINYINT" property="isluckgoods" />
+    <result column="FullNum" jdbcType="INTEGER" property="fullnum" />
+    <result column="ReduceNum" jdbcType="INTEGER" property="reducenum" />
+    <result column="SalesPriceTwo" jdbcType="DECIMAL" property="salespricetwo" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.smile.pojo.ShopGoodsDO">
+    <result column="Describe" jdbcType="LONGVARCHAR" property="describe" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, Collating, SupplierId, Name, ShortInfo, CategoryId, MarketNumber, Weight, CoverImgId, 
+    RollImages, MarketPrice, SalesPrice, CostPrice, PV, Inventory, WarningInventory, 
+    IsNorm, IsPutaway, IsOnSale, IsSpecialGoods, IsHot, IsNew, UnitsTitle, IsEnabled, 
+    IsDeleted, CreateTime, UpdateTime, GoodsCode, AuditReason, ExpressTemplateId, UserPercent, 
+    FatherPercent, IsPublicGoods, PublicPercent, IsExchangeGoods, Homepurchaserestrictions, 
+    Timing, Timeframe, PublicNumber, PublicInventory, CutDownTime, LowPrice, HighPrice, 
+    IsBargainGoods, Cheap, MaxUseIntegral, IsLuckGoods, FullNum, ReduceNum, SalesPriceTwo
+  </sql>
+  <sql id="Blob_Column_List">
+    `Describe`
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.smile.pojo.ShopGoodsDOExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from shopgoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.smile.pojo.ShopGoodsDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shopgoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from shopgoods
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shopgoods
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.smile.pojo.ShopGoodsDOExample">
+    delete from shopgoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.smile.pojo.ShopGoodsDO">
+    insert into shopgoods (Id, Collating, SupplierId, 
+      Name, ShortInfo, CategoryId, 
+      MarketNumber, Weight, CoverImgId, 
+      RollImages, MarketPrice, SalesPrice, 
+      CostPrice, PV, Inventory, 
+      WarningInventory, IsNorm, IsPutaway, 
+      IsOnSale, IsSpecialGoods, IsHot, 
+      IsNew, UnitsTitle, IsEnabled, 
+      IsDeleted, CreateTime, UpdateTime, 
+      GoodsCode, AuditReason, ExpressTemplateId, 
+      UserPercent, FatherPercent, IsPublicGoods, 
+      PublicPercent, IsExchangeGoods, Homepurchaserestrictions, 
+      Timing, Timeframe, PublicNumber, 
+      PublicInventory, CutDownTime, LowPrice, 
+      HighPrice, IsBargainGoods, Cheap, 
+      MaxUseIntegral, IsLuckGoods, FullNum, 
+      ReduceNum, SalesPriceTwo, Describe
+      )
+    values (#{id,jdbcType=INTEGER}, #{collating,jdbcType=INTEGER}, #{supplierid,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{shortinfo,jdbcType=VARCHAR}, #{categoryid,jdbcType=INTEGER}, 
+      #{marketnumber,jdbcType=INTEGER}, #{weight,jdbcType=DECIMAL}, #{coverimgid,jdbcType=VARCHAR}, 
+      #{rollimages,jdbcType=VARCHAR}, #{marketprice,jdbcType=DECIMAL}, #{salesprice,jdbcType=DECIMAL}, 
+      #{costprice,jdbcType=DECIMAL}, #{pv,jdbcType=DECIMAL}, #{inventory,jdbcType=INTEGER}, 
+      #{warninginventory,jdbcType=INTEGER}, #{isnorm,jdbcType=TINYINT}, #{isputaway,jdbcType=TINYINT}, 
+      #{isonsale,jdbcType=TINYINT}, #{isspecialgoods,jdbcType=TINYINT}, #{ishot,jdbcType=TINYINT}, 
+      #{isnew,jdbcType=TINYINT}, #{unitstitle,jdbcType=VARCHAR}, #{isenabled,jdbcType=TINYINT}, 
+      #{isdeleted,jdbcType=TINYINT}, #{createtime,jdbcType=BIGINT}, #{updatetime,jdbcType=BIGINT}, 
+      #{goodscode,jdbcType=VARCHAR}, #{auditreason,jdbcType=VARCHAR}, #{expresstemplateid,jdbcType=INTEGER}, 
+      #{userpercent,jdbcType=DECIMAL}, #{fatherpercent,jdbcType=DECIMAL}, #{ispublicgoods,jdbcType=TINYINT}, 
+      #{publicpercent,jdbcType=DECIMAL}, #{isexchangegoods,jdbcType=TINYINT}, #{homepurchaserestrictions,jdbcType=VARCHAR}, 
+      #{timing,jdbcType=BIGINT}, #{timeframe,jdbcType=BIGINT}, #{publicnumber,jdbcType=INTEGER}, 
+      #{publicinventory,jdbcType=INTEGER}, #{cutdowntime,jdbcType=INTEGER}, #{lowprice,jdbcType=DECIMAL}, 
+      #{highprice,jdbcType=DECIMAL}, #{isbargaingoods,jdbcType=TINYINT}, #{cheap,jdbcType=DECIMAL}, 
+      #{maxuseintegral,jdbcType=INTEGER}, #{isluckgoods,jdbcType=TINYINT}, #{fullnum,jdbcType=INTEGER}, 
+      #{reducenum,jdbcType=INTEGER}, #{salespricetwo,jdbcType=DECIMAL}, #{describe,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.smile.pojo.ShopGoodsDO">
+    insert into shopgoods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="collating != null">
+        Collating,
+      </if>
+      <if test="supplierid != null">
+        SupplierId,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="shortinfo != null">
+        ShortInfo,
+      </if>
+      <if test="categoryid != null">
+        CategoryId,
+      </if>
+      <if test="marketnumber != null">
+        MarketNumber,
+      </if>
+      <if test="weight != null">
+        Weight,
+      </if>
+      <if test="coverimgid != null">
+        CoverImgId,
+      </if>
+      <if test="rollimages != null">
+        RollImages,
+      </if>
+      <if test="marketprice != null">
+        MarketPrice,
+      </if>
+      <if test="salesprice != null">
+        SalesPrice,
+      </if>
+      <if test="costprice != null">
+        CostPrice,
+      </if>
+      <if test="pv != null">
+        PV,
+      </if>
+      <if test="inventory != null">
+        Inventory,
+      </if>
+      <if test="warninginventory != null">
+        WarningInventory,
+      </if>
+      <if test="isnorm != null">
+        IsNorm,
+      </if>
+      <if test="isputaway != null">
+        IsPutaway,
+      </if>
+      <if test="isonsale != null">
+        IsOnSale,
+      </if>
+      <if test="isspecialgoods != null">
+        IsSpecialGoods,
+      </if>
+      <if test="ishot != null">
+        IsHot,
+      </if>
+      <if test="isnew != null">
+        IsNew,
+      </if>
+      <if test="unitstitle != null">
+        UnitsTitle,
+      </if>
+      <if test="isenabled != null">
+        IsEnabled,
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="goodscode != null">
+        GoodsCode,
+      </if>
+      <if test="auditreason != null">
+        AuditReason,
+      </if>
+      <if test="expresstemplateid != null">
+        ExpressTemplateId,
+      </if>
+      <if test="userpercent != null">
+        UserPercent,
+      </if>
+      <if test="fatherpercent != null">
+        FatherPercent,
+      </if>
+      <if test="ispublicgoods != null">
+        IsPublicGoods,
+      </if>
+      <if test="publicpercent != null">
+        PublicPercent,
+      </if>
+      <if test="isexchangegoods != null">
+        IsExchangeGoods,
+      </if>
+      <if test="homepurchaserestrictions != null">
+        Homepurchaserestrictions,
+      </if>
+      <if test="timing != null">
+        Timing,
+      </if>
+      <if test="timeframe != null">
+        Timeframe,
+      </if>
+      <if test="publicnumber != null">
+        PublicNumber,
+      </if>
+      <if test="publicinventory != null">
+        PublicInventory,
+      </if>
+      <if test="cutdowntime != null">
+        CutDownTime,
+      </if>
+      <if test="lowprice != null">
+        LowPrice,
+      </if>
+      <if test="highprice != null">
+        HighPrice,
+      </if>
+      <if test="isbargaingoods != null">
+        IsBargainGoods,
+      </if>
+      <if test="cheap != null">
+        Cheap,
+      </if>
+      <if test="maxuseintegral != null">
+        MaxUseIntegral,
+      </if>
+      <if test="isluckgoods != null">
+        IsLuckGoods,
+      </if>
+      <if test="fullnum != null">
+        FullNum,
+      </if>
+      <if test="reducenum != null">
+        ReduceNum,
+      </if>
+      <if test="salespricetwo != null">
+        SalesPriceTwo,
+      </if>
+      <if test="describe != null">
+        Describe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="collating != null">
+        #{collating,jdbcType=INTEGER},
+      </if>
+      <if test="supplierid != null">
+        #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortinfo != null">
+        #{shortinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null">
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="marketnumber != null">
+        #{marketnumber,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="coverimgid != null">
+        #{coverimgid,jdbcType=VARCHAR},
+      </if>
+      <if test="rollimages != null">
+        #{rollimages,jdbcType=VARCHAR},
+      </if>
+      <if test="marketprice != null">
+        #{marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="salesprice != null">
+        #{salesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="costprice != null">
+        #{costprice,jdbcType=DECIMAL},
+      </if>
+      <if test="pv != null">
+        #{pv,jdbcType=DECIMAL},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="warninginventory != null">
+        #{warninginventory,jdbcType=INTEGER},
+      </if>
+      <if test="isnorm != null">
+        #{isnorm,jdbcType=TINYINT},
+      </if>
+      <if test="isputaway != null">
+        #{isputaway,jdbcType=TINYINT},
+      </if>
+      <if test="isonsale != null">
+        #{isonsale,jdbcType=TINYINT},
+      </if>
+      <if test="isspecialgoods != null">
+        #{isspecialgoods,jdbcType=TINYINT},
+      </if>
+      <if test="ishot != null">
+        #{ishot,jdbcType=TINYINT},
+      </if>
+      <if test="isnew != null">
+        #{isnew,jdbcType=TINYINT},
+      </if>
+      <if test="unitstitle != null">
+        #{unitstitle,jdbcType=VARCHAR},
+      </if>
+      <if test="isenabled != null">
+        #{isenabled,jdbcType=TINYINT},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=BIGINT},
+      </if>
+      <if test="goodscode != null">
+        #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="auditreason != null">
+        #{auditreason,jdbcType=VARCHAR},
+      </if>
+      <if test="expresstemplateid != null">
+        #{expresstemplateid,jdbcType=INTEGER},
+      </if>
+      <if test="userpercent != null">
+        #{userpercent,jdbcType=DECIMAL},
+      </if>
+      <if test="fatherpercent != null">
+        #{fatherpercent,jdbcType=DECIMAL},
+      </if>
+      <if test="ispublicgoods != null">
+        #{ispublicgoods,jdbcType=TINYINT},
+      </if>
+      <if test="publicpercent != null">
+        #{publicpercent,jdbcType=DECIMAL},
+      </if>
+      <if test="isexchangegoods != null">
+        #{isexchangegoods,jdbcType=TINYINT},
+      </if>
+      <if test="homepurchaserestrictions != null">
+        #{homepurchaserestrictions,jdbcType=VARCHAR},
+      </if>
+      <if test="timing != null">
+        #{timing,jdbcType=BIGINT},
+      </if>
+      <if test="timeframe != null">
+        #{timeframe,jdbcType=BIGINT},
+      </if>
+      <if test="publicnumber != null">
+        #{publicnumber,jdbcType=INTEGER},
+      </if>
+      <if test="publicinventory != null">
+        #{publicinventory,jdbcType=INTEGER},
+      </if>
+      <if test="cutdowntime != null">
+        #{cutdowntime,jdbcType=INTEGER},
+      </if>
+      <if test="lowprice != null">
+        #{lowprice,jdbcType=DECIMAL},
+      </if>
+      <if test="highprice != null">
+        #{highprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isbargaingoods != null">
+        #{isbargaingoods,jdbcType=TINYINT},
+      </if>
+      <if test="cheap != null">
+        #{cheap,jdbcType=DECIMAL},
+      </if>
+      <if test="maxuseintegral != null">
+        #{maxuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="isluckgoods != null">
+        #{isluckgoods,jdbcType=TINYINT},
+      </if>
+      <if test="fullnum != null">
+        #{fullnum,jdbcType=INTEGER},
+      </if>
+      <if test="reducenum != null">
+        #{reducenum,jdbcType=INTEGER},
+      </if>
+      <if test="salespricetwo != null">
+        #{salespricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.smile.pojo.ShopGoodsDOExample" resultType="java.lang.Long">
+    select count(*) from shopgoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update shopgoods
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.collating != null">
+        Collating = #{record.collating,jdbcType=INTEGER},
+      </if>
+      <if test="record.supplierid != null">
+        SupplierId = #{record.supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        Name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortinfo != null">
+        ShortInfo = #{record.shortinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryid != null">
+        CategoryId = #{record.categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marketnumber != null">
+        MarketNumber = #{record.marketnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.weight != null">
+        Weight = #{record.weight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.coverimgid != null">
+        CoverImgId = #{record.coverimgid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rollimages != null">
+        RollImages = #{record.rollimages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketprice != null">
+        MarketPrice = #{record.marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.salesprice != null">
+        SalesPrice = #{record.salesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.costprice != null">
+        CostPrice = #{record.costprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pv != null">
+        PV = #{record.pv,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inventory != null">
+        Inventory = #{record.inventory,jdbcType=INTEGER},
+      </if>
+      <if test="record.warninginventory != null">
+        WarningInventory = #{record.warninginventory,jdbcType=INTEGER},
+      </if>
+      <if test="record.isnorm != null">
+        IsNorm = #{record.isnorm,jdbcType=TINYINT},
+      </if>
+      <if test="record.isputaway != null">
+        IsPutaway = #{record.isputaway,jdbcType=TINYINT},
+      </if>
+      <if test="record.isonsale != null">
+        IsOnSale = #{record.isonsale,jdbcType=TINYINT},
+      </if>
+      <if test="record.isspecialgoods != null">
+        IsSpecialGoods = #{record.isspecialgoods,jdbcType=TINYINT},
+      </if>
+      <if test="record.ishot != null">
+        IsHot = #{record.ishot,jdbcType=TINYINT},
+      </if>
+      <if test="record.isnew != null">
+        IsNew = #{record.isnew,jdbcType=TINYINT},
+      </if>
+      <if test="record.unitstitle != null">
+        UnitsTitle = #{record.unitstitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isenabled != null">
+        IsEnabled = #{record.isenabled,jdbcType=TINYINT},
+      </if>
+      <if test="record.isdeleted != null">
+        IsDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.createtime != null">
+        CreateTime = #{record.createtime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updatetime != null">
+        UpdateTime = #{record.updatetime,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodscode != null">
+        GoodsCode = #{record.goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditreason != null">
+        AuditReason = #{record.auditreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expresstemplateid != null">
+        ExpressTemplateId = #{record.expresstemplateid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userpercent != null">
+        UserPercent = #{record.userpercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fatherpercent != null">
+        FatherPercent = #{record.fatherpercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ispublicgoods != null">
+        IsPublicGoods = #{record.ispublicgoods,jdbcType=TINYINT},
+      </if>
+      <if test="record.publicpercent != null">
+        PublicPercent = #{record.publicpercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isexchangegoods != null">
+        IsExchangeGoods = #{record.isexchangegoods,jdbcType=TINYINT},
+      </if>
+      <if test="record.homepurchaserestrictions != null">
+        Homepurchaserestrictions = #{record.homepurchaserestrictions,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timing != null">
+        Timing = #{record.timing,jdbcType=BIGINT},
+      </if>
+      <if test="record.timeframe != null">
+        Timeframe = #{record.timeframe,jdbcType=BIGINT},
+      </if>
+      <if test="record.publicnumber != null">
+        PublicNumber = #{record.publicnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.publicinventory != null">
+        PublicInventory = #{record.publicinventory,jdbcType=INTEGER},
+      </if>
+      <if test="record.cutdowntime != null">
+        CutDownTime = #{record.cutdowntime,jdbcType=INTEGER},
+      </if>
+      <if test="record.lowprice != null">
+        LowPrice = #{record.lowprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.highprice != null">
+        HighPrice = #{record.highprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isbargaingoods != null">
+        IsBargainGoods = #{record.isbargaingoods,jdbcType=TINYINT},
+      </if>
+      <if test="record.cheap != null">
+        Cheap = #{record.cheap,jdbcType=DECIMAL},
+      </if>
+      <if test="record.maxuseintegral != null">
+        MaxUseIntegral = #{record.maxuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.isluckgoods != null">
+        IsLuckGoods = #{record.isluckgoods,jdbcType=TINYINT},
+      </if>
+      <if test="record.fullnum != null">
+        FullNum = #{record.fullnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.reducenum != null">
+        ReduceNum = #{record.reducenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.salespricetwo != null">
+        SalesPriceTwo = #{record.salespricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="record.describe != null">
+        Describe = #{record.describe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update shopgoods
+    set Id = #{record.id,jdbcType=INTEGER},
+      Collating = #{record.collating,jdbcType=INTEGER},
+      SupplierId = #{record.supplierid,jdbcType=INTEGER},
+      Name = #{record.name,jdbcType=VARCHAR},
+      ShortInfo = #{record.shortinfo,jdbcType=VARCHAR},
+      CategoryId = #{record.categoryid,jdbcType=INTEGER},
+      MarketNumber = #{record.marketnumber,jdbcType=INTEGER},
+      Weight = #{record.weight,jdbcType=DECIMAL},
+      CoverImgId = #{record.coverimgid,jdbcType=VARCHAR},
+      RollImages = #{record.rollimages,jdbcType=VARCHAR},
+      MarketPrice = #{record.marketprice,jdbcType=DECIMAL},
+      SalesPrice = #{record.salesprice,jdbcType=DECIMAL},
+      CostPrice = #{record.costprice,jdbcType=DECIMAL},
+      PV = #{record.pv,jdbcType=DECIMAL},
+      Inventory = #{record.inventory,jdbcType=INTEGER},
+      WarningInventory = #{record.warninginventory,jdbcType=INTEGER},
+      IsNorm = #{record.isnorm,jdbcType=TINYINT},
+      IsPutaway = #{record.isputaway,jdbcType=TINYINT},
+      IsOnSale = #{record.isonsale,jdbcType=TINYINT},
+      IsSpecialGoods = #{record.isspecialgoods,jdbcType=TINYINT},
+      IsHot = #{record.ishot,jdbcType=TINYINT},
+      IsNew = #{record.isnew,jdbcType=TINYINT},
+      UnitsTitle = #{record.unitstitle,jdbcType=VARCHAR},
+      IsEnabled = #{record.isenabled,jdbcType=TINYINT},
+      IsDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      CreateTime = #{record.createtime,jdbcType=BIGINT},
+      UpdateTime = #{record.updatetime,jdbcType=BIGINT},
+      GoodsCode = #{record.goodscode,jdbcType=VARCHAR},
+      AuditReason = #{record.auditreason,jdbcType=VARCHAR},
+      ExpressTemplateId = #{record.expresstemplateid,jdbcType=INTEGER},
+      UserPercent = #{record.userpercent,jdbcType=DECIMAL},
+      FatherPercent = #{record.fatherpercent,jdbcType=DECIMAL},
+      IsPublicGoods = #{record.ispublicgoods,jdbcType=TINYINT},
+      PublicPercent = #{record.publicpercent,jdbcType=DECIMAL},
+      IsExchangeGoods = #{record.isexchangegoods,jdbcType=TINYINT},
+      Homepurchaserestrictions = #{record.homepurchaserestrictions,jdbcType=VARCHAR},
+      Timing = #{record.timing,jdbcType=BIGINT},
+      Timeframe = #{record.timeframe,jdbcType=BIGINT},
+      PublicNumber = #{record.publicnumber,jdbcType=INTEGER},
+      PublicInventory = #{record.publicinventory,jdbcType=INTEGER},
+      CutDownTime = #{record.cutdowntime,jdbcType=INTEGER},
+      LowPrice = #{record.lowprice,jdbcType=DECIMAL},
+      HighPrice = #{record.highprice,jdbcType=DECIMAL},
+      IsBargainGoods = #{record.isbargaingoods,jdbcType=TINYINT},
+      Cheap = #{record.cheap,jdbcType=DECIMAL},
+      MaxUseIntegral = #{record.maxuseintegral,jdbcType=INTEGER},
+      IsLuckGoods = #{record.isluckgoods,jdbcType=TINYINT},
+      FullNum = #{record.fullnum,jdbcType=INTEGER},
+      ReduceNum = #{record.reducenum,jdbcType=INTEGER},
+      SalesPriceTwo = #{record.salespricetwo,jdbcType=DECIMAL},
+      Describe = #{record.describe,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update shopgoods
+    set Id = #{record.id,jdbcType=INTEGER},
+      Collating = #{record.collating,jdbcType=INTEGER},
+      SupplierId = #{record.supplierid,jdbcType=INTEGER},
+      Name = #{record.name,jdbcType=VARCHAR},
+      ShortInfo = #{record.shortinfo,jdbcType=VARCHAR},
+      CategoryId = #{record.categoryid,jdbcType=INTEGER},
+      MarketNumber = #{record.marketnumber,jdbcType=INTEGER},
+      Weight = #{record.weight,jdbcType=DECIMAL},
+      CoverImgId = #{record.coverimgid,jdbcType=VARCHAR},
+      RollImages = #{record.rollimages,jdbcType=VARCHAR},
+      MarketPrice = #{record.marketprice,jdbcType=DECIMAL},
+      SalesPrice = #{record.salesprice,jdbcType=DECIMAL},
+      CostPrice = #{record.costprice,jdbcType=DECIMAL},
+      PV = #{record.pv,jdbcType=DECIMAL},
+      Inventory = #{record.inventory,jdbcType=INTEGER},
+      WarningInventory = #{record.warninginventory,jdbcType=INTEGER},
+      IsNorm = #{record.isnorm,jdbcType=TINYINT},
+      IsPutaway = #{record.isputaway,jdbcType=TINYINT},
+      IsOnSale = #{record.isonsale,jdbcType=TINYINT},
+      IsSpecialGoods = #{record.isspecialgoods,jdbcType=TINYINT},
+      IsHot = #{record.ishot,jdbcType=TINYINT},
+      IsNew = #{record.isnew,jdbcType=TINYINT},
+      UnitsTitle = #{record.unitstitle,jdbcType=VARCHAR},
+      IsEnabled = #{record.isenabled,jdbcType=TINYINT},
+      IsDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      CreateTime = #{record.createtime,jdbcType=BIGINT},
+      UpdateTime = #{record.updatetime,jdbcType=BIGINT},
+      GoodsCode = #{record.goodscode,jdbcType=VARCHAR},
+      AuditReason = #{record.auditreason,jdbcType=VARCHAR},
+      ExpressTemplateId = #{record.expresstemplateid,jdbcType=INTEGER},
+      UserPercent = #{record.userpercent,jdbcType=DECIMAL},
+      FatherPercent = #{record.fatherpercent,jdbcType=DECIMAL},
+      IsPublicGoods = #{record.ispublicgoods,jdbcType=TINYINT},
+      PublicPercent = #{record.publicpercent,jdbcType=DECIMAL},
+      IsExchangeGoods = #{record.isexchangegoods,jdbcType=TINYINT},
+      Homepurchaserestrictions = #{record.homepurchaserestrictions,jdbcType=VARCHAR},
+      Timing = #{record.timing,jdbcType=BIGINT},
+      Timeframe = #{record.timeframe,jdbcType=BIGINT},
+      PublicNumber = #{record.publicnumber,jdbcType=INTEGER},
+      PublicInventory = #{record.publicinventory,jdbcType=INTEGER},
+      CutDownTime = #{record.cutdowntime,jdbcType=INTEGER},
+      LowPrice = #{record.lowprice,jdbcType=DECIMAL},
+      HighPrice = #{record.highprice,jdbcType=DECIMAL},
+      IsBargainGoods = #{record.isbargaingoods,jdbcType=TINYINT},
+      Cheap = #{record.cheap,jdbcType=DECIMAL},
+      MaxUseIntegral = #{record.maxuseintegral,jdbcType=INTEGER},
+      IsLuckGoods = #{record.isluckgoods,jdbcType=TINYINT},
+      FullNum = #{record.fullnum,jdbcType=INTEGER},
+      ReduceNum = #{record.reducenum,jdbcType=INTEGER},
+      SalesPriceTwo = #{record.salespricetwo,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smile.pojo.ShopGoodsDO">
+    update shopgoods
+    <set>
+      <if test="collating != null">
+        Collating = #{collating,jdbcType=INTEGER},
+      </if>
+      <if test="supplierid != null">
+        SupplierId = #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortinfo != null">
+        ShortInfo = #{shortinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryid != null">
+        CategoryId = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="marketnumber != null">
+        MarketNumber = #{marketnumber,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        Weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="coverimgid != null">
+        CoverImgId = #{coverimgid,jdbcType=VARCHAR},
+      </if>
+      <if test="rollimages != null">
+        RollImages = #{rollimages,jdbcType=VARCHAR},
+      </if>
+      <if test="marketprice != null">
+        MarketPrice = #{marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="salesprice != null">
+        SalesPrice = #{salesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="costprice != null">
+        CostPrice = #{costprice,jdbcType=DECIMAL},
+      </if>
+      <if test="pv != null">
+        PV = #{pv,jdbcType=DECIMAL},
+      </if>
+      <if test="inventory != null">
+        Inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="warninginventory != null">
+        WarningInventory = #{warninginventory,jdbcType=INTEGER},
+      </if>
+      <if test="isnorm != null">
+        IsNorm = #{isnorm,jdbcType=TINYINT},
+      </if>
+      <if test="isputaway != null">
+        IsPutaway = #{isputaway,jdbcType=TINYINT},
+      </if>
+      <if test="isonsale != null">
+        IsOnSale = #{isonsale,jdbcType=TINYINT},
+      </if>
+      <if test="isspecialgoods != null">
+        IsSpecialGoods = #{isspecialgoods,jdbcType=TINYINT},
+      </if>
+      <if test="ishot != null">
+        IsHot = #{ishot,jdbcType=TINYINT},
+      </if>
+      <if test="isnew != null">
+        IsNew = #{isnew,jdbcType=TINYINT},
+      </if>
+      <if test="unitstitle != null">
+        UnitsTitle = #{unitstitle,jdbcType=VARCHAR},
+      </if>
+      <if test="isenabled != null">
+        IsEnabled = #{isenabled,jdbcType=TINYINT},
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted = #{isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=BIGINT},
+      </if>
+      <if test="goodscode != null">
+        GoodsCode = #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="auditreason != null">
+        AuditReason = #{auditreason,jdbcType=VARCHAR},
+      </if>
+      <if test="expresstemplateid != null">
+        ExpressTemplateId = #{expresstemplateid,jdbcType=INTEGER},
+      </if>
+      <if test="userpercent != null">
+        UserPercent = #{userpercent,jdbcType=DECIMAL},
+      </if>
+      <if test="fatherpercent != null">
+        FatherPercent = #{fatherpercent,jdbcType=DECIMAL},
+      </if>
+      <if test="ispublicgoods != null">
+        IsPublicGoods = #{ispublicgoods,jdbcType=TINYINT},
+      </if>
+      <if test="publicpercent != null">
+        PublicPercent = #{publicpercent,jdbcType=DECIMAL},
+      </if>
+      <if test="isexchangegoods != null">
+        IsExchangeGoods = #{isexchangegoods,jdbcType=TINYINT},
+      </if>
+      <if test="homepurchaserestrictions != null">
+        Homepurchaserestrictions = #{homepurchaserestrictions,jdbcType=VARCHAR},
+      </if>
+      <if test="timing != null">
+        Timing = #{timing,jdbcType=BIGINT},
+      </if>
+      <if test="timeframe != null">
+        Timeframe = #{timeframe,jdbcType=BIGINT},
+      </if>
+      <if test="publicnumber != null">
+        PublicNumber = #{publicnumber,jdbcType=INTEGER},
+      </if>
+      <if test="publicinventory != null">
+        PublicInventory = #{publicinventory,jdbcType=INTEGER},
+      </if>
+      <if test="cutdowntime != null">
+        CutDownTime = #{cutdowntime,jdbcType=INTEGER},
+      </if>
+      <if test="lowprice != null">
+        LowPrice = #{lowprice,jdbcType=DECIMAL},
+      </if>
+      <if test="highprice != null">
+        HighPrice = #{highprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isbargaingoods != null">
+        IsBargainGoods = #{isbargaingoods,jdbcType=TINYINT},
+      </if>
+      <if test="cheap != null">
+        Cheap = #{cheap,jdbcType=DECIMAL},
+      </if>
+      <if test="maxuseintegral != null">
+        MaxUseIntegral = #{maxuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="isluckgoods != null">
+        IsLuckGoods = #{isluckgoods,jdbcType=TINYINT},
+      </if>
+      <if test="fullnum != null">
+        FullNum = #{fullnum,jdbcType=INTEGER},
+      </if>
+      <if test="reducenum != null">
+        ReduceNum = #{reducenum,jdbcType=INTEGER},
+      </if>
+      <if test="salespricetwo != null">
+        SalesPriceTwo = #{salespricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="describe != null">
+        Describe = #{describe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.smile.pojo.ShopGoodsDO">
+    update shopgoods
+    set Collating = #{collating,jdbcType=INTEGER},
+      SupplierId = #{supplierid,jdbcType=INTEGER},
+      Name = #{name,jdbcType=VARCHAR},
+      ShortInfo = #{shortinfo,jdbcType=VARCHAR},
+      CategoryId = #{categoryid,jdbcType=INTEGER},
+      MarketNumber = #{marketnumber,jdbcType=INTEGER},
+      Weight = #{weight,jdbcType=DECIMAL},
+      CoverImgId = #{coverimgid,jdbcType=VARCHAR},
+      RollImages = #{rollimages,jdbcType=VARCHAR},
+      MarketPrice = #{marketprice,jdbcType=DECIMAL},
+      SalesPrice = #{salesprice,jdbcType=DECIMAL},
+      CostPrice = #{costprice,jdbcType=DECIMAL},
+      PV = #{pv,jdbcType=DECIMAL},
+      Inventory = #{inventory,jdbcType=INTEGER},
+      WarningInventory = #{warninginventory,jdbcType=INTEGER},
+      IsNorm = #{isnorm,jdbcType=TINYINT},
+      IsPutaway = #{isputaway,jdbcType=TINYINT},
+      IsOnSale = #{isonsale,jdbcType=TINYINT},
+      IsSpecialGoods = #{isspecialgoods,jdbcType=TINYINT},
+      IsHot = #{ishot,jdbcType=TINYINT},
+      IsNew = #{isnew,jdbcType=TINYINT},
+      UnitsTitle = #{unitstitle,jdbcType=VARCHAR},
+      IsEnabled = #{isenabled,jdbcType=TINYINT},
+      IsDeleted = #{isdeleted,jdbcType=TINYINT},
+      CreateTime = #{createtime,jdbcType=BIGINT},
+      UpdateTime = #{updatetime,jdbcType=BIGINT},
+      GoodsCode = #{goodscode,jdbcType=VARCHAR},
+      AuditReason = #{auditreason,jdbcType=VARCHAR},
+      ExpressTemplateId = #{expresstemplateid,jdbcType=INTEGER},
+      UserPercent = #{userpercent,jdbcType=DECIMAL},
+      FatherPercent = #{fatherpercent,jdbcType=DECIMAL},
+      IsPublicGoods = #{ispublicgoods,jdbcType=TINYINT},
+      PublicPercent = #{publicpercent,jdbcType=DECIMAL},
+      IsExchangeGoods = #{isexchangegoods,jdbcType=TINYINT},
+      Homepurchaserestrictions = #{homepurchaserestrictions,jdbcType=VARCHAR},
+      Timing = #{timing,jdbcType=BIGINT},
+      Timeframe = #{timeframe,jdbcType=BIGINT},
+      PublicNumber = #{publicnumber,jdbcType=INTEGER},
+      PublicInventory = #{publicinventory,jdbcType=INTEGER},
+      CutDownTime = #{cutdowntime,jdbcType=INTEGER},
+      LowPrice = #{lowprice,jdbcType=DECIMAL},
+      HighPrice = #{highprice,jdbcType=DECIMAL},
+      IsBargainGoods = #{isbargaingoods,jdbcType=TINYINT},
+      Cheap = #{cheap,jdbcType=DECIMAL},
+      MaxUseIntegral = #{maxuseintegral,jdbcType=INTEGER},
+      IsLuckGoods = #{isluckgoods,jdbcType=TINYINT},
+      FullNum = #{fullnum,jdbcType=INTEGER},
+      ReduceNum = #{reducenum,jdbcType=INTEGER},
+      SalesPriceTwo = #{salespricetwo,jdbcType=DECIMAL},
+      Describe = #{describe,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smile.pojo.ShopGoodsDO">
+    update shopgoods
+    set Collating = #{collating,jdbcType=INTEGER},
+      SupplierId = #{supplierid,jdbcType=INTEGER},
+      Name = #{name,jdbcType=VARCHAR},
+      ShortInfo = #{shortinfo,jdbcType=VARCHAR},
+      CategoryId = #{categoryid,jdbcType=INTEGER},
+      MarketNumber = #{marketnumber,jdbcType=INTEGER},
+      Weight = #{weight,jdbcType=DECIMAL},
+      CoverImgId = #{coverimgid,jdbcType=VARCHAR},
+      RollImages = #{rollimages,jdbcType=VARCHAR},
+      MarketPrice = #{marketprice,jdbcType=DECIMAL},
+      SalesPrice = #{salesprice,jdbcType=DECIMAL},
+      CostPrice = #{costprice,jdbcType=DECIMAL},
+      PV = #{pv,jdbcType=DECIMAL},
+      Inventory = #{inventory,jdbcType=INTEGER},
+      WarningInventory = #{warninginventory,jdbcType=INTEGER},
+      IsNorm = #{isnorm,jdbcType=TINYINT},
+      IsPutaway = #{isputaway,jdbcType=TINYINT},
+      IsOnSale = #{isonsale,jdbcType=TINYINT},
+      IsSpecialGoods = #{isspecialgoods,jdbcType=TINYINT},
+      IsHot = #{ishot,jdbcType=TINYINT},
+      IsNew = #{isnew,jdbcType=TINYINT},
+      UnitsTitle = #{unitstitle,jdbcType=VARCHAR},
+      IsEnabled = #{isenabled,jdbcType=TINYINT},
+      IsDeleted = #{isdeleted,jdbcType=TINYINT},
+      CreateTime = #{createtime,jdbcType=BIGINT},
+      UpdateTime = #{updatetime,jdbcType=BIGINT},
+      GoodsCode = #{goodscode,jdbcType=VARCHAR},
+      AuditReason = #{auditreason,jdbcType=VARCHAR},
+      ExpressTemplateId = #{expresstemplateid,jdbcType=INTEGER},
+      UserPercent = #{userpercent,jdbcType=DECIMAL},
+      FatherPercent = #{fatherpercent,jdbcType=DECIMAL},
+      IsPublicGoods = #{ispublicgoods,jdbcType=TINYINT},
+      PublicPercent = #{publicpercent,jdbcType=DECIMAL},
+      IsExchangeGoods = #{isexchangegoods,jdbcType=TINYINT},
+      Homepurchaserestrictions = #{homepurchaserestrictions,jdbcType=VARCHAR},
+      Timing = #{timing,jdbcType=BIGINT},
+      Timeframe = #{timeframe,jdbcType=BIGINT},
+      PublicNumber = #{publicnumber,jdbcType=INTEGER},
+      PublicInventory = #{publicinventory,jdbcType=INTEGER},
+      CutDownTime = #{cutdowntime,jdbcType=INTEGER},
+      LowPrice = #{lowprice,jdbcType=DECIMAL},
+      HighPrice = #{highprice,jdbcType=DECIMAL},
+      IsBargainGoods = #{isbargaingoods,jdbcType=TINYINT},
+      Cheap = #{cheap,jdbcType=DECIMAL},
+      MaxUseIntegral = #{maxuseintegral,jdbcType=INTEGER},
+      IsLuckGoods = #{isluckgoods,jdbcType=TINYINT},
+      FullNum = #{fullnum,jdbcType=INTEGER},
+      ReduceNum = #{reducenum,jdbcType=INTEGER},
+      SalesPriceTwo = #{salespricetwo,jdbcType=DECIMAL}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

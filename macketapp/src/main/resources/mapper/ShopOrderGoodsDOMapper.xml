@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smile.mapper.ShopOrderGoodsDOMapper">
+  <resultMap id="BaseResultMap" type="com.smile.pojo.ShopOrderGoodsDO">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="SupplierId" jdbcType="INTEGER" property="supplierid" />
+    <result column="OrderId" jdbcType="INTEGER" property="orderid" />
+    <result column="OrderNo" jdbcType="VARCHAR" property="orderno" />
+    <result column="GoodsId" jdbcType="INTEGER" property="goodsid" />
+    <result column="GoodsName" jdbcType="VARCHAR" property="goodsname" />
+    <result column="GoodsNum" jdbcType="INTEGER" property="goodsnum" />
+    <result column="GoodsShortInfo" jdbcType="VARCHAR" property="goodsshortinfo" />
+    <result column="GoodsCategoryId" jdbcType="INTEGER" property="goodscategoryid" />
+    <result column="GoodsCategoryTitle" jdbcType="VARCHAR" property="goodscategorytitle" />
+    <result column="GoodsWeight" jdbcType="DECIMAL" property="goodsweight" />
+    <result column="GoodsCoverImgId" jdbcType="VARCHAR" property="goodscoverimgid" />
+    <result column="GoodsRollImages" jdbcType="VARCHAR" property="goodsrollimages" />
+    <result column="GoodsSalesPrice" jdbcType="DECIMAL" property="goodssalesprice" />
+    <result column="GoodsCostPrice" jdbcType="DECIMAL" property="goodscostprice" />
+    <result column="GoodsIsNorm" jdbcType="TINYINT" property="goodsisnorm" />
+    <result column="GoodsNormId" jdbcType="INTEGER" property="goodsnormid" />
+    <result column="GoodsNorms" jdbcType="VARCHAR" property="goodsnorms" />
+    <result column="IsOnSale" jdbcType="TINYINT" property="isonsale" />
+    <result column="IsEnabled" jdbcType="TINYINT" property="isenabled" />
+    <result column="IsDeleted" jdbcType="TINYINT" property="isdeleted" />
+    <result column="CreateTime" jdbcType="INTEGER" property="createtime" />
+    <result column="UpdateTime" jdbcType="INTEGER" property="updatetime" />
+    <result column="PublicNumber" jdbcType="INTEGER" property="publicnumber" />
+    <result column="MaxUseIntegral" jdbcType="INTEGER" property="maxuseintegral" />
+    <result column="SalesPriceTwo" jdbcType="DECIMAL" property="salespricetwo" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.smile.pojo.ShopOrderGoodsDO">
+    <result column="GoodsDescribe" jdbcType="LONGVARCHAR" property="goodsdescribe" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, SupplierId, OrderId, OrderNo, GoodsId, GoodsName, GoodsNum, GoodsShortInfo, GoodsCategoryId, 
+    GoodsCategoryTitle, GoodsWeight, GoodsCoverImgId, GoodsRollImages, GoodsSalesPrice, 
+    GoodsCostPrice, GoodsIsNorm, GoodsNormId, GoodsNorms, IsOnSale, IsEnabled, IsDeleted, 
+    CreateTime, UpdateTime, PublicNumber, MaxUseIntegral, SalesPriceTwo
+  </sql>
+  <sql id="Blob_Column_List">
+    GoodsDescribe
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.smile.pojo.ShopOrderGoodsDOExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from shopordergoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.smile.pojo.ShopOrderGoodsDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shopordergoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from shopordergoods
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shopordergoods
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.smile.pojo.ShopOrderGoodsDOExample">
+    delete from shopordergoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.smile.pojo.ShopOrderGoodsDO">
+    insert into shopordergoods (Id, SupplierId, OrderId, 
+      OrderNo, GoodsId, GoodsName, 
+      GoodsNum, GoodsShortInfo, GoodsCategoryId, 
+      GoodsCategoryTitle, GoodsWeight, GoodsCoverImgId, 
+      GoodsRollImages, GoodsSalesPrice, GoodsCostPrice, 
+      GoodsIsNorm, GoodsNormId, GoodsNorms, 
+      IsOnSale, IsEnabled, IsDeleted, 
+      CreateTime, UpdateTime, PublicNumber, 
+      MaxUseIntegral, SalesPriceTwo, GoodsDescribe
+      )
+    values (#{id,jdbcType=INTEGER}, #{supplierid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, 
+      #{orderno,jdbcType=VARCHAR}, #{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, 
+      #{goodsnum,jdbcType=INTEGER}, #{goodsshortinfo,jdbcType=VARCHAR}, #{goodscategoryid,jdbcType=INTEGER}, 
+      #{goodscategorytitle,jdbcType=VARCHAR}, #{goodsweight,jdbcType=DECIMAL}, #{goodscoverimgid,jdbcType=VARCHAR}, 
+      #{goodsrollimages,jdbcType=VARCHAR}, #{goodssalesprice,jdbcType=DECIMAL}, #{goodscostprice,jdbcType=DECIMAL}, 
+      #{goodsisnorm,jdbcType=TINYINT}, #{goodsnormid,jdbcType=INTEGER}, #{goodsnorms,jdbcType=VARCHAR}, 
+      #{isonsale,jdbcType=TINYINT}, #{isenabled,jdbcType=TINYINT}, #{isdeleted,jdbcType=TINYINT}, 
+      #{createtime,jdbcType=INTEGER}, #{updatetime,jdbcType=INTEGER}, #{publicnumber,jdbcType=INTEGER}, 
+      #{maxuseintegral,jdbcType=INTEGER}, #{salespricetwo,jdbcType=DECIMAL}, #{goodsdescribe,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.smile.pojo.ShopOrderGoodsDO">
+    insert into shopordergoods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="supplierid != null">
+        SupplierId,
+      </if>
+      <if test="orderid != null">
+        OrderId,
+      </if>
+      <if test="orderno != null">
+        OrderNo,
+      </if>
+      <if test="goodsid != null">
+        GoodsId,
+      </if>
+      <if test="goodsname != null">
+        GoodsName,
+      </if>
+      <if test="goodsnum != null">
+        GoodsNum,
+      </if>
+      <if test="goodsshortinfo != null">
+        GoodsShortInfo,
+      </if>
+      <if test="goodscategoryid != null">
+        GoodsCategoryId,
+      </if>
+      <if test="goodscategorytitle != null">
+        GoodsCategoryTitle,
+      </if>
+      <if test="goodsweight != null">
+        GoodsWeight,
+      </if>
+      <if test="goodscoverimgid != null">
+        GoodsCoverImgId,
+      </if>
+      <if test="goodsrollimages != null">
+        GoodsRollImages,
+      </if>
+      <if test="goodssalesprice != null">
+        GoodsSalesPrice,
+      </if>
+      <if test="goodscostprice != null">
+        GoodsCostPrice,
+      </if>
+      <if test="goodsisnorm != null">
+        GoodsIsNorm,
+      </if>
+      <if test="goodsnormid != null">
+        GoodsNormId,
+      </if>
+      <if test="goodsnorms != null">
+        GoodsNorms,
+      </if>
+      <if test="isonsale != null">
+        IsOnSale,
+      </if>
+      <if test="isenabled != null">
+        IsEnabled,
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="publicnumber != null">
+        PublicNumber,
+      </if>
+      <if test="maxuseintegral != null">
+        MaxUseIntegral,
+      </if>
+      <if test="salespricetwo != null">
+        SalesPriceTwo,
+      </if>
+      <if test="goodsdescribe != null">
+        GoodsDescribe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="supplierid != null">
+        #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null">
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsname != null">
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsnum != null">
+        #{goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsshortinfo != null">
+        #{goodsshortinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscategoryid != null">
+        #{goodscategoryid,jdbcType=INTEGER},
+      </if>
+      <if test="goodscategorytitle != null">
+        #{goodscategorytitle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsweight != null">
+        #{goodsweight,jdbcType=DECIMAL},
+      </if>
+      <if test="goodscoverimgid != null">
+        #{goodscoverimgid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsrollimages != null">
+        #{goodsrollimages,jdbcType=VARCHAR},
+      </if>
+      <if test="goodssalesprice != null">
+        #{goodssalesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodscostprice != null">
+        #{goodscostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsisnorm != null">
+        #{goodsisnorm,jdbcType=TINYINT},
+      </if>
+      <if test="goodsnormid != null">
+        #{goodsnormid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsnorms != null">
+        #{goodsnorms,jdbcType=VARCHAR},
+      </if>
+      <if test="isonsale != null">
+        #{isonsale,jdbcType=TINYINT},
+      </if>
+      <if test="isenabled != null">
+        #{isenabled,jdbcType=TINYINT},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="publicnumber != null">
+        #{publicnumber,jdbcType=INTEGER},
+      </if>
+      <if test="maxuseintegral != null">
+        #{maxuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="salespricetwo != null">
+        #{salespricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsdescribe != null">
+        #{goodsdescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.smile.pojo.ShopOrderGoodsDOExample" resultType="java.lang.Long">
+    select count(*) from shopordergoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update shopordergoods
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.supplierid != null">
+        SupplierId = #{record.supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderid != null">
+        OrderId = #{record.orderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderno != null">
+        OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsid != null">
+        GoodsId = #{record.goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsname != null">
+        GoodsName = #{record.goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsnum != null">
+        GoodsNum = #{record.goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsshortinfo != null">
+        GoodsShortInfo = #{record.goodsshortinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodscategoryid != null">
+        GoodsCategoryId = #{record.goodscategoryid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodscategorytitle != null">
+        GoodsCategoryTitle = #{record.goodscategorytitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsweight != null">
+        GoodsWeight = #{record.goodsweight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodscoverimgid != null">
+        GoodsCoverImgId = #{record.goodscoverimgid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsrollimages != null">
+        GoodsRollImages = #{record.goodsrollimages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodssalesprice != null">
+        GoodsSalesPrice = #{record.goodssalesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodscostprice != null">
+        GoodsCostPrice = #{record.goodscostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsisnorm != null">
+        GoodsIsNorm = #{record.goodsisnorm,jdbcType=TINYINT},
+      </if>
+      <if test="record.goodsnormid != null">
+        GoodsNormId = #{record.goodsnormid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsnorms != null">
+        GoodsNorms = #{record.goodsnorms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isonsale != null">
+        IsOnSale = #{record.isonsale,jdbcType=TINYINT},
+      </if>
+      <if test="record.isenabled != null">
+        IsEnabled = #{record.isenabled,jdbcType=TINYINT},
+      </if>
+      <if test="record.isdeleted != null">
+        IsDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.createtime != null">
+        CreateTime = #{record.createtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatetime != null">
+        UpdateTime = #{record.updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.publicnumber != null">
+        PublicNumber = #{record.publicnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxuseintegral != null">
+        MaxUseIntegral = #{record.maxuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.salespricetwo != null">
+        SalesPriceTwo = #{record.salespricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsdescribe != null">
+        GoodsDescribe = #{record.goodsdescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update shopordergoods
+    set Id = #{record.id,jdbcType=INTEGER},
+      SupplierId = #{record.supplierid,jdbcType=INTEGER},
+      OrderId = #{record.orderid,jdbcType=INTEGER},
+      OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      GoodsId = #{record.goodsid,jdbcType=INTEGER},
+      GoodsName = #{record.goodsname,jdbcType=VARCHAR},
+      GoodsNum = #{record.goodsnum,jdbcType=INTEGER},
+      GoodsShortInfo = #{record.goodsshortinfo,jdbcType=VARCHAR},
+      GoodsCategoryId = #{record.goodscategoryid,jdbcType=INTEGER},
+      GoodsCategoryTitle = #{record.goodscategorytitle,jdbcType=VARCHAR},
+      GoodsWeight = #{record.goodsweight,jdbcType=DECIMAL},
+      GoodsCoverImgId = #{record.goodscoverimgid,jdbcType=VARCHAR},
+      GoodsRollImages = #{record.goodsrollimages,jdbcType=VARCHAR},
+      GoodsSalesPrice = #{record.goodssalesprice,jdbcType=DECIMAL},
+      GoodsCostPrice = #{record.goodscostprice,jdbcType=DECIMAL},
+      GoodsIsNorm = #{record.goodsisnorm,jdbcType=TINYINT},
+      GoodsNormId = #{record.goodsnormid,jdbcType=INTEGER},
+      GoodsNorms = #{record.goodsnorms,jdbcType=VARCHAR},
+      IsOnSale = #{record.isonsale,jdbcType=TINYINT},
+      IsEnabled = #{record.isenabled,jdbcType=TINYINT},
+      IsDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      CreateTime = #{record.createtime,jdbcType=INTEGER},
+      UpdateTime = #{record.updatetime,jdbcType=INTEGER},
+      PublicNumber = #{record.publicnumber,jdbcType=INTEGER},
+      MaxUseIntegral = #{record.maxuseintegral,jdbcType=INTEGER},
+      SalesPriceTwo = #{record.salespricetwo,jdbcType=DECIMAL},
+      GoodsDescribe = #{record.goodsdescribe,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update shopordergoods
+    set Id = #{record.id,jdbcType=INTEGER},
+      SupplierId = #{record.supplierid,jdbcType=INTEGER},
+      OrderId = #{record.orderid,jdbcType=INTEGER},
+      OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      GoodsId = #{record.goodsid,jdbcType=INTEGER},
+      GoodsName = #{record.goodsname,jdbcType=VARCHAR},
+      GoodsNum = #{record.goodsnum,jdbcType=INTEGER},
+      GoodsShortInfo = #{record.goodsshortinfo,jdbcType=VARCHAR},
+      GoodsCategoryId = #{record.goodscategoryid,jdbcType=INTEGER},
+      GoodsCategoryTitle = #{record.goodscategorytitle,jdbcType=VARCHAR},
+      GoodsWeight = #{record.goodsweight,jdbcType=DECIMAL},
+      GoodsCoverImgId = #{record.goodscoverimgid,jdbcType=VARCHAR},
+      GoodsRollImages = #{record.goodsrollimages,jdbcType=VARCHAR},
+      GoodsSalesPrice = #{record.goodssalesprice,jdbcType=DECIMAL},
+      GoodsCostPrice = #{record.goodscostprice,jdbcType=DECIMAL},
+      GoodsIsNorm = #{record.goodsisnorm,jdbcType=TINYINT},
+      GoodsNormId = #{record.goodsnormid,jdbcType=INTEGER},
+      GoodsNorms = #{record.goodsnorms,jdbcType=VARCHAR},
+      IsOnSale = #{record.isonsale,jdbcType=TINYINT},
+      IsEnabled = #{record.isenabled,jdbcType=TINYINT},
+      IsDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      CreateTime = #{record.createtime,jdbcType=INTEGER},
+      UpdateTime = #{record.updatetime,jdbcType=INTEGER},
+      PublicNumber = #{record.publicnumber,jdbcType=INTEGER},
+      MaxUseIntegral = #{record.maxuseintegral,jdbcType=INTEGER},
+      SalesPriceTwo = #{record.salespricetwo,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smile.pojo.ShopOrderGoodsDO">
+    update shopordergoods
+    <set>
+      <if test="supplierid != null">
+        SupplierId = #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        OrderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null">
+        OrderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsid != null">
+        GoodsId = #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsname != null">
+        GoodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsnum != null">
+        GoodsNum = #{goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsshortinfo != null">
+        GoodsShortInfo = #{goodsshortinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscategoryid != null">
+        GoodsCategoryId = #{goodscategoryid,jdbcType=INTEGER},
+      </if>
+      <if test="goodscategorytitle != null">
+        GoodsCategoryTitle = #{goodscategorytitle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsweight != null">
+        GoodsWeight = #{goodsweight,jdbcType=DECIMAL},
+      </if>
+      <if test="goodscoverimgid != null">
+        GoodsCoverImgId = #{goodscoverimgid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsrollimages != null">
+        GoodsRollImages = #{goodsrollimages,jdbcType=VARCHAR},
+      </if>
+      <if test="goodssalesprice != null">
+        GoodsSalesPrice = #{goodssalesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodscostprice != null">
+        GoodsCostPrice = #{goodscostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsisnorm != null">
+        GoodsIsNorm = #{goodsisnorm,jdbcType=TINYINT},
+      </if>
+      <if test="goodsnormid != null">
+        GoodsNormId = #{goodsnormid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsnorms != null">
+        GoodsNorms = #{goodsnorms,jdbcType=VARCHAR},
+      </if>
+      <if test="isonsale != null">
+        IsOnSale = #{isonsale,jdbcType=TINYINT},
+      </if>
+      <if test="isenabled != null">
+        IsEnabled = #{isenabled,jdbcType=TINYINT},
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted = #{isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="publicnumber != null">
+        PublicNumber = #{publicnumber,jdbcType=INTEGER},
+      </if>
+      <if test="maxuseintegral != null">
+        MaxUseIntegral = #{maxuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="salespricetwo != null">
+        SalesPriceTwo = #{salespricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsdescribe != null">
+        GoodsDescribe = #{goodsdescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.smile.pojo.ShopOrderGoodsDO">
+    update shopordergoods
+    set SupplierId = #{supplierid,jdbcType=INTEGER},
+      OrderId = #{orderid,jdbcType=INTEGER},
+      OrderNo = #{orderno,jdbcType=VARCHAR},
+      GoodsId = #{goodsid,jdbcType=INTEGER},
+      GoodsName = #{goodsname,jdbcType=VARCHAR},
+      GoodsNum = #{goodsnum,jdbcType=INTEGER},
+      GoodsShortInfo = #{goodsshortinfo,jdbcType=VARCHAR},
+      GoodsCategoryId = #{goodscategoryid,jdbcType=INTEGER},
+      GoodsCategoryTitle = #{goodscategorytitle,jdbcType=VARCHAR},
+      GoodsWeight = #{goodsweight,jdbcType=DECIMAL},
+      GoodsCoverImgId = #{goodscoverimgid,jdbcType=VARCHAR},
+      GoodsRollImages = #{goodsrollimages,jdbcType=VARCHAR},
+      GoodsSalesPrice = #{goodssalesprice,jdbcType=DECIMAL},
+      GoodsCostPrice = #{goodscostprice,jdbcType=DECIMAL},
+      GoodsIsNorm = #{goodsisnorm,jdbcType=TINYINT},
+      GoodsNormId = #{goodsnormid,jdbcType=INTEGER},
+      GoodsNorms = #{goodsnorms,jdbcType=VARCHAR},
+      IsOnSale = #{isonsale,jdbcType=TINYINT},
+      IsEnabled = #{isenabled,jdbcType=TINYINT},
+      IsDeleted = #{isdeleted,jdbcType=TINYINT},
+      CreateTime = #{createtime,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=INTEGER},
+      PublicNumber = #{publicnumber,jdbcType=INTEGER},
+      MaxUseIntegral = #{maxuseintegral,jdbcType=INTEGER},
+      SalesPriceTwo = #{salespricetwo,jdbcType=DECIMAL},
+      GoodsDescribe = #{goodsdescribe,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smile.pojo.ShopOrderGoodsDO">
+    update shopordergoods
+    set SupplierId = #{supplierid,jdbcType=INTEGER},
+      OrderId = #{orderid,jdbcType=INTEGER},
+      OrderNo = #{orderno,jdbcType=VARCHAR},
+      GoodsId = #{goodsid,jdbcType=INTEGER},
+      GoodsName = #{goodsname,jdbcType=VARCHAR},
+      GoodsNum = #{goodsnum,jdbcType=INTEGER},
+      GoodsShortInfo = #{goodsshortinfo,jdbcType=VARCHAR},
+      GoodsCategoryId = #{goodscategoryid,jdbcType=INTEGER},
+      GoodsCategoryTitle = #{goodscategorytitle,jdbcType=VARCHAR},
+      GoodsWeight = #{goodsweight,jdbcType=DECIMAL},
+      GoodsCoverImgId = #{goodscoverimgid,jdbcType=VARCHAR},
+      GoodsRollImages = #{goodsrollimages,jdbcType=VARCHAR},
+      GoodsSalesPrice = #{goodssalesprice,jdbcType=DECIMAL},
+      GoodsCostPrice = #{goodscostprice,jdbcType=DECIMAL},
+      GoodsIsNorm = #{goodsisnorm,jdbcType=TINYINT},
+      GoodsNormId = #{goodsnormid,jdbcType=INTEGER},
+      GoodsNorms = #{goodsnorms,jdbcType=VARCHAR},
+      IsOnSale = #{isonsale,jdbcType=TINYINT},
+      IsEnabled = #{isenabled,jdbcType=TINYINT},
+      IsDeleted = #{isdeleted,jdbcType=TINYINT},
+      CreateTime = #{createtime,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=INTEGER},
+      PublicNumber = #{publicnumber,jdbcType=INTEGER},
+      MaxUseIntegral = #{maxuseintegral,jdbcType=INTEGER},
+      SalesPriceTwo = #{salespricetwo,jdbcType=DECIMAL}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

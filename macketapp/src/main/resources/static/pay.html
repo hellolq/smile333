@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html data-dpr="1" style="font-size: 56px;" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+	<title>确认支付</title>
+
+	<link th:href="@{/css/global_style_new.css}"  rel="stylesheet">
+	<link th:href="@{/css/paymoney.css}"  rel="stylesheet">
+	<link th:href="@{/css/mui.min.css}"  rel="stylesheet">
+
+</head>
+
+<body>
+
+<!--顶部-->
+<div class="top_nav font-s16">
+	<i  id="sure_back" style="left: 0px;position: absolute;margin-top: .2rem;" class="mui-icon mui-icon-back"></i>
+	确认支付
+</div>
+<!--banner图-->
+<div class="distance_top"><img src="http://dddz.yiwowmall.com/Content/adlx/images/paymoney.jpg" alt=""></div>
+<!--内容-->
+<div class="expressage_k  font-s15">
+	<div class="heji flex">
+		<div>合计金额</div>
+		<input type="hidden" id="shopXsje" th:value="${xsjeSum}">
+		<input type="hidden" id="orderId" th:value="${orderId}" >
+		<div><span class="kd_f">（共<b th:text="${shopNum}"></b>件商品）</span>
+			￥<strong class="font-s24" th:text="${xsjeSum}"></strong>
+		</div>
+	</div>
+	<div class="xzkd_all">
+		<div class="fshi font-s13">选择支付方式</div>
+		<label id="AliPayOK" >
+			<input name="payType" type="radio" checked="" value="支付宝支付">
+			<div class="payy flex-sz"><img src="http://dddz.yiwowmall.com/Content/adlx/images/ui/zhifbzf.png" alt="">支付宝支付</div>
+			<span class="in_img_1"></span>
+		</label>
+		<label id="OK">
+			<input name="payType" type="radio" value="微信支付">
+			<div class="payy flex-sz"><img src="http://dddz.yiwowmall.com/Content/adlx/images/ui/weixzf.png" alt="">微信支付</div>
+			<span class="in_img_1"></span>
+		</label>
+
+	</div>
+	<div class="xzkd_ok">
+		<input class="font-s15" type="submit" id="AllPay" value="立即支付">
+	</div>
+</div>
+
+</body>
+<script type="text/javascript"  th:src="@{/js/jquery-3.3.1.js}"></script>
+<script>
+	$(function () {
+		$("#sure_back").on('click',function () {
+            window.history.go(-1);
+        });
+    });
+</script>
+</html>

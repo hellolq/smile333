@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 37.5px;" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>Title</title>
+    <link th:href="@{/css/mui.min.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div style="display: block;position: fixed;top: 0px;
+			background-color: white;width: 100%;z-index: 100;">
+    <div class="mui-content-one-query" style="display: flex;
+             padding: 5px;">
+        <input type="text" placeholder="搜宝贝" id="" style="flex: 5;
+                 height: 0.8rem;
+                 border-radius: 1rem;
+                 background-color: #ECE9E9;
+                 padding-left: 1rem;
+                 margin: 0;" />
+        <button style="flex: 1;
+                      height: 0.8rem;
+                      margin-left: 5px;
+                      border-radius: 1rem;
+                      background-color: #707070;
+                      color: white;">搜索</button>
+    </div>
+</div>
+<div class="mui-content">
+
+    <div class="mui-content-one" style="background-color: white;">
+
+        <div class="mui-scroll-wrapper" style="margin-top: 1rem;height: 6700px;">
+            <div class="mui-scroll">
+                <div id="slider" class="mui-slider">
+                    <div class="mui-slider-group mui-slider-loop">
+                        <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+                        <div th:each="img,headImgsStat:${indexPage.headImgs}" th:if="${headImgsStat.last}"
+                             class="mui-slider-item mui-slider-item-duplicate">
+                            <a href="#">
+                                <img th:src="${img.imgUrl}" >
+                            </a>
+                        </div>
+
+                        <!-- 第一张 -->
+                        <div th:each="img,headImgsStat:${indexPage.headImgs}" class="mui-slider-item">
+                            <a href="#">
+                                <img th:src="${img.imgUrl}" >
+                            </a>
+                        </div>
+
+                        <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+                        <div th:each="img,headImgsStat:${indexPage.headImgs}" th:if="${headImgsStat.first}"
+                             class="mui-slider-item mui-slider-item-duplicate">
+                            <a href="#">
+                                <img th:src="${img.imgUrl}" >
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mui-slider-indicator">
+                        <div class="mui-indicator mui-active"></div>
+                        <div class="mui-indicator"></div>
+                        <div class="mui-indicator"></div>
+                        <div class="mui-indicator"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <ul style="display: flex;margin: 0px;padding: 0px;    padding-bottom: 0.4rem;background-color: white;">
+                        <li style="margin: 0;padding: 0;flex: 1;
+									list-style-type:none;text-align: center;font-size: 0.4rem;">
+                            <div style="width: 1.25rem;height:1.25rem;margin:0 auto;
+										text-align: center;margin-bottom: 0.2rem;margin-top: 0.2rem;">
+                                <img width="100%" src="http://dddz.yiwowmall.com/Content/adlx/images/qiandao.png" />
+                            </div>
+                            <span style="font-size: 12px;">每日签到</span>
+                        </li>
+                        <li style="margin: 0;padding: 0;flex: 1;
+									list-style-type:none;text-align: center;font-size: 0.4rem;">
+                            <div style="width: 1.25rem;height:1.25rem;margin:0 auto;
+										text-align: center;margin-bottom: 0.2rem;margin-top: 0.2rem;">
+                                <img width="100%" src="http://dddz.yiwowmall.com/Content/adlx/images/choujiang.png" />
+                            </div>
+                            <span style="font-size: 12px;">每日签到</span>
+                        </li>
+                        <li style="margin: 0;padding: 0;flex: 1;
+									list-style-type:none;text-align: center;font-size: 0.4rem;">
+                            <div style="width: 1.25rem;height:1.25rem;margin:0 auto;
+										text-align: center;margin-bottom: 0.2rem;margin-top: 0.2rem;">
+                                <img width="100%" src="http://dddz.yiwowmall.com/Content/adlx/images/kanjia.png" />
+                            </div>
+                            <span style="font-size: 12px;">每日签到</span>
+                        </li>
+                        <li style="margin: 0;padding: 0;flex: 1;
+									list-style-type:none;text-align: center;font-size: 0.4rem;">
+                            <div style="width: 1.25rem;height:1.25rem;margin:0 auto;
+										text-align: center;margin-bottom: 0.2rem;margin-top: 0.2rem;">
+                                <img width="100%" src="http://dddz.yiwowmall.com/Content/adlx/images/gongyi.png" />
+                            </div>
+                            <span style="font-size: 12px;">每日签到</span>
+                        </li>
+                        <li style="margin: 0;padding: 0;flex: 1;
+									list-style-type:none;text-align: center;font-size: 0.4rem;">
+                            <div style="width: 1.25rem;height:1.25rem;margin:0 auto;
+										text-align: center;margin-bottom: 0.2rem;margin-top: 0.2rem;">
+                                <img width="100%" src="http://dddz.yiwowmall.com/Content/adlx/images/duijiang.png" />
+                            </div>
+                            <span style="font-size: 12px;">每日签到</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--
+                             作者：liqiaoyes@qq.com
+                              时间：2018-05-20
+                              描述：超值热卖
+    -->
+                <div style="margin-top: 10px;background-color: white;">
+                    <div style="text-align: center;padding-top: 0.3rem;color: #2A2A2A;">
+                        <svg style="height: 1em;width: 1em;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                            <path d="M371.712 927.872c-45.696-26.368-61.568-85.504-35.2-131.2l384.256-665.472c26.368-45.696 85.504-61.568 131.2-35.2s61.568 85.504 35.2 131.2l-384.256 665.6c-26.368 45.696-85.376 61.568-131.2 35.072z" fill="#22f4c0"></path>
+                            <path d="M158.336 554.496c-32.64-18.816-44.032-61.056-25.088-93.696L331.392 117.504c18.816-32.64 61.056-44.032 93.696-25.088 32.64 18.816 44.032 61.056 25.088 93.696L252.032 529.408c-18.816 32.768-61.056 44.032-93.696 25.088z" fill="#a661e7"></path>
+                        </svg>
+                        超值热卖
+                        <svg style="height: 1em;width: 1em;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                            <path d="M371.712 927.872c-45.696-26.368-61.568-85.504-35.2-131.2l384.256-665.472c26.368-45.696 85.504-61.568 131.2-35.2s61.568 85.504 35.2 131.2l-384.256 665.6c-26.368 45.696-85.376 61.568-131.2 35.072z" fill="#22f4c0"></path>
+                            <path d="M158.336 554.496c-32.64-18.816-44.032-61.056-25.088-93.696L331.392 117.504c18.816-32.64 61.056-44.032 93.696-25.088 32.64 18.816 44.032 61.056 25.088 93.696L252.032 529.408c-18.816 32.768-61.056 44.032-93.696 25.088z" fill="#a661e7"></path>
+                        </svg>
+
+                    </div>
+                    <ul style="display: flex;margin: 0;padding: 0;">
+                        <li style="margin: 0;padding: 0;list-style-type: none;margin-top:0.2rem;margin-left:0.2rem;
+                        margin-right: 0.2rem;flex:1;width: 1px;" th:each="commodity,commodityStat:${indexPage.hotSaleImgs}"
+                         class="goodsDetail_li" th:goodsId="${commodity.id}">
+                            <div style="width: 100%;">
+                                <img style="width: 100%;height: auto;"  th:src="${commodity.viewImg}" />
+                            </div>
+                            <div style="white-space: nowrap;overflow: hidden;
+										text-overflow: ellipsis;z-index: 1;
+										font-size: 14px;" th:text="${commodity.goodsName}"></div>
+                            <div style="font-size: 10px;color: red;">
+                                ￥
+                                <span th:text="${commodity.price}"></span>
+                            </div>
+
+                        </li>
+
+                    </ul>
+                    <div style="text-align: center;">
+                        <button style="padding: 5px 50px 5px ;border-radius: 5px;
+									color: #3A3A3A;    margin-top: 0.4rem;margin-bottom: 0.4rem;">
+                            查看更多</button>
+                    </div>
+
+                </div>
+                <!--
+                    作者：liqiaoyes@qq.com
+                    时间：2018-05-20
+                    描述：新品专区
+                -->
+                <div style="background-color: white;margin-top: 8px;">
+
+                    <div style="text-align: center;padding-top: 0.3rem;color: #2A2A2A;">
+                        <svg style="height: 1em;width: 1em;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                            <path d="M371.712 927.872c-45.696-26.368-61.568-85.504-35.2-131.2l384.256-665.472c26.368-45.696 85.504-61.568 131.2-35.2s61.568 85.504 35.2 131.2l-384.256 665.6c-26.368 45.696-85.376 61.568-131.2 35.072z" fill="#22f4c0"></path>
+                            <path d="M158.336 554.496c-32.64-18.816-44.032-61.056-25.088-93.696L331.392 117.504c18.816-32.64 61.056-44.032 93.696-25.088 32.64 18.816 44.032 61.056 25.088 93.696L252.032 529.408c-18.816 32.768-61.056 44.032-93.696 25.088z" fill="#a661e7"></path>
+                        </svg>
+                        新品专区
+                        <svg style="height: 1em;width: 1em;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                            <path d="M371.712 927.872c-45.696-26.368-61.568-85.504-35.2-131.2l384.256-665.472c26.368-45.696 85.504-61.568 131.2-35.2s61.568 85.504 35.2 131.2l-384.256 665.6c-26.368 45.696-85.376 61.568-131.2 35.072z" fill="#22f4c0"></path>
+                            <path d="M158.336 554.496c-32.64-18.816-44.032-61.056-25.088-93.696L331.392 117.504c18.816-32.64 61.056-44.032 93.696-25.088 32.64 18.816 44.032 61.056 25.088 93.696L252.032 529.408c-18.816 32.768-61.056 44.032-93.696 25.088z" fill="#a661e7"></path>
+                        </svg>
+
+                    </div>
+
+                    <div style="display: flex;min-width: 1px;">
+                        <div style="flex: 1;width: 1px;padding-left: 5px;"
+                             th:each="commodity,newGoodsImagsStat:${indexPage.newGoodsImags}" th:if="${newGoodsImagsStat.first}"
+                             class="goodsDetail_li" th:goodsId="${commodity.id}">
+                            <div style="white-space: nowrap;overflow: hidden;
+										text-overflow: ellipsis;font-size: 14px;
+										color: #3a3a3a;margin: 0px;" th:text="${commodity.goodsName}"></div>
+                            <div style="font-size: 10px;color: #3a3a3a;" th:text="${commodity.shortInfo}"></div>
+                            <div style="width: 100%;">
+                                <img style="width: 100%;height: auto;" th:src="${commodity.viewImg}" />
+                            </div>
+                        </div>
+
+                        <div style="flex: 1;display: flex;flex-direction: column;padding-left: 5px;padding-right: 5px;">
+                            <div style="flex:1;width: 100%;height: 100%;display: flex;"
+                                 th:each="commodity,newGoodsImagsStat:${indexPage.newGoodsImags}" th:if="${newGoodsImagsStat.first} == false"
+                                 class="goodsDetail_li" th:goodsId="${commodity.id}">
+
+                                <div style="flex: 1;width: 1px;align-items: center;
+					    					justify-content: center;margin: auto 0;">
+
+                                    <div style="font-size: 14px;color: #3a3a3a;white-space: nowrap;
+					    						overflow: hidden;text-overflow: ellipsis;" th:text="${commodity.goodsName}"></div>
+                                    <div style="font-size: 10px;color: #3a3a3a;white-space: nowrap;
+					    						overflow: hidden;text-overflow: ellipsis;" th:text="${commodity.shortInfo}"></div>
+                                </div>
+
+                                <div style="flex: 1;margin:auto 0;">
+                                    <img style="width: 100%;display: block;" th:src="${commodity.viewImg}" />
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                    作者：liqiaoyes@qq.com
+                    时间：2018-05-20
+                    描述：为您推荐
+                -->
+                <div style="background-color: white;margin-top: 10px;">
+                    <div style="text-align: center;padding-top: 0.3rem;color: #2A2A2A;">
+                        <svg style="height: 1em;width: 1em;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                            <path d="M371.712 927.872c-45.696-26.368-61.568-85.504-35.2-131.2l384.256-665.472c26.368-45.696 85.504-61.568 131.2-35.2s61.568 85.504 35.2 131.2l-384.256 665.6c-26.368 45.696-85.376 61.568-131.2 35.072z" fill="#22f4c0"></path>
+                            <path d="M158.336 554.496c-32.64-18.816-44.032-61.056-25.088-93.696L331.392 117.504c18.816-32.64 61.056-44.032 93.696-25.088 32.64 18.816 44.032 61.056 25.088 93.696L252.032 529.408c-18.816 32.768-61.056 44.032-93.696 25.088z" fill="#a661e7"></path>
+                        </svg>
+                        为您推荐
+                        <svg style="height: 1em;width: 1em;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                            <path d="M371.712 927.872c-45.696-26.368-61.568-85.504-35.2-131.2l384.256-665.472c26.368-45.696 85.504-61.568 131.2-35.2s61.568 85.504 35.2 131.2l-384.256 665.6c-26.368 45.696-85.376 61.568-131.2 35.072z" fill="#22f4c0"></path>
+                            <path d="M158.336 554.496c-32.64-18.816-44.032-61.056-25.088-93.696L331.392 117.504c18.816-32.64 61.056-44.032 93.696-25.088 32.64 18.816 44.032 61.056 25.088 93.696L252.032 529.408c-18.816 32.768-61.056 44.032-93.696 25.088z" fill="#a661e7"></path>
+                        </svg>
+
+                    </div>
+                    <div style="background-color: white;display: flex;">
+
+                        <div style="flex: 1;width: 100%;height: auto;padding: 10px;margin-bottom: 1rem;"
+                             >
+
+                            <div style="width: 100%;border: 1px #F7F7F7 solid;margin-bottom: 1rem;"
+                                 th:each="commodity,recommendGoodsImagsStat:${indexPage.recommendGoodsImags}" th:if="${recommendGoodsImagsStat.odd}"
+                                 class="goodsDetail_li" th:goodsId="${commodity.id}">
+                                <div style="width: 100%;">
+                                    <img style="width: 100%;" th:src="${commodity.viewImg}" />
+                                </div>
+                                <div style="font-size: 14px;color: #3a3a3a;" th:text="${commodity.goodsName}"></div>
+                                <div style="font-size: 10px;color: #3a3a3a;color: red;"> ￥
+                                    <span th:text="${commodity.price}"></span>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div style="flex: 1;width: 100%;height: auto;padding: 10px;">
+
+                            <div style="width: 100%;border: 1px #F7F7F7 solid;margin-bottom: 1rem;"
+                                 th:each="commodity,recommendGoodsImagsStat:${indexPage.recommendGoodsImags}" th:if="${recommendGoodsImagsStat.even}"
+                                 class="goodsDetail_li" th:goodsId="${commodity.id}">
+                                <div style="width: 100%;">
+                                    <img style="width: 100%;" th:src="${commodity.viewImg}" />
+                                </div>
+                                <div style="font-size: 14px;color: #3a3a3a;" th:text="${commodity.goodsName}"></div>
+                                <div style="font-size: 10px;color: #3a3a3a;color: red;"> ￥
+                                    <span th:text="${commodity.price}"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div style="display: block;position: fixed;bottom: 0px;z-index: 99;
+			width: 100%;height: auto;background-color: white;">
+    <ul style="display: flex;margin: 0;padding: 0px;">
+        <li style="flex: 1;display: block;text-align: center;color: red !important;">
+            <div style="margin-bottom: -0.2rem;margin-top: 0.2rem;">
+                <svg style="height: 1.5em;width: 1.5em;fill: red;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                    <path d="M951.466667 430.933333L565.333333 125.866667c-29.866667-23.466667-76.8-23.466667-106.666666 0L72.533333 430.933333c-6.4 6.4-10.666667 14.933333-6.4 23.466667s10.666667 14.933333 19.2 14.933333h44.8v375.466667c0 42.666667 32 72.533333 74.666667 72.533333h224c12.8 0 21.333333-8.533333 21.333333-21.333333v-153.6c0-32 27.733333-59.733333 61.866667-59.733333h4.266667c34.133333 0 61.866667 27.733333 61.866666 59.733333V896c0 12.8 8.533333 21.333333 21.333334 21.333333h226.133333c42.666667 0 70.4-29.866667 70.4-72.533333V469.333333h42.666667c8.533333 0 17.066667-6.4 19.2-14.933333s2.133333-17.066667-6.4-23.466667z"></path>
+                </svg>
+            </div>
+            <div style="font-size: 12px;">首页</div>
+
+        </li>
+        <li style="flex: 1;display: block;text-align: center;">
+            <div style="margin-bottom: -0.2rem;margin-top: 0.2rem;">
+                <svg style="height: 1.5em;width: 1.5em;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                    <path d="M747.008 58.368v40.96c32.256 0 61.952 12.288 84.992 35.328l63.488 62.976c46.592 46.592 46.592 122.88 0 169.984l-63.488 63.488c-22.528 22.528-52.736 35.328-84.992 35.328-32.256 0-62.464-12.288-84.992-35.328L599.04 367.616c-46.592-46.592-46.592-122.88 0-169.472l63.488-63.488c22.528-22.528 52.736-35.328 84.992-35.328l-0.512-40.96m0 0c-41.472 0-82.432 15.872-113.664 47.104L569.856 168.96C506.88 231.936 506.88 333.824 569.856 396.8l62.976 62.976c31.232 31.232 72.704 47.104 113.664 47.104s82.432-15.872 113.664-47.104l63.488-62.976c62.976-62.976 62.976-164.864 0-227.84L860.16 105.472c-30.72-31.744-71.68-47.104-113.152-47.104zM303.104 117.76c66.048 0 120.32 53.76 120.32 120.32V327.68c0 66.048-53.76 120.32-120.32 120.32H213.504C147.456 448 93.696 394.24 93.696 327.68V237.568c0-32.256 12.288-62.464 35.328-84.992 22.528-22.528 52.736-35.328 84.992-35.328h89.088m0-40.448H213.504c-89.088 0-160.768 72.192-160.768 161.28V327.68c0 89.088 72.192 160.768 160.768 160.768h89.6c89.088 0 161.28-72.192 161.28-161.28V237.568C463.872 148.48 392.192 76.8 303.104 76.8zM792.064 595.456c66.048 0 120.32 53.76 120.32 120.32v89.6c0 66.048-53.76 120.32-120.32 120.32h-89.6c-66.048 0-120.32-53.76-120.32-120.32v-89.6c0-66.048 53.76-120.32 120.32-120.32h89.6m0-40.96h-89.6c-89.088 0-161.28 72.192-161.28 161.28v89.6c0 89.088 72.192 161.28 161.28 161.28h89.6c89.088 0 161.28-72.192 161.28-161.28v-89.6c-0.512-89.6-72.192-161.28-161.28-161.28zM303.104 595.456c66.048 0 120.32 53.76 120.32 120.32v89.6c0 66.048-53.76 120.32-120.32 120.32H213.504c-66.048 0-120.32-53.76-120.32-120.32v-89.6c0-32.256 12.288-62.464 35.328-84.992 22.528-22.528 52.736-35.328 84.992-35.328h89.6m0-40.96H213.504c-89.088 0-160.768 72.192-160.768 161.28v89.6c0 89.088 72.192 161.28 161.28 161.28h89.6c89.088 0 161.28-72.192 161.28-161.28v-89.6c-1.024-89.6-72.704-161.28-161.792-161.28z"></path>
+                </svg>
+            </div>
+            <div style="font-size: 12px;">分类</div>
+
+        </li>
+
+        <li style="flex: 1;display: block;text-align: center;">
+            <div style="margin-bottom: -0.2rem;margin-top: 0.2rem;">
+                <svg style="height: 1.5em;width: 1.5em;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                    <path d="M833.055157 180.728154c-5.959735-22.439058-23.260773-32.203446-45.908586-28.852118-25.043373 3.720741-36.680411 19.748786-34.57547 44.903699 0.943488 11.354606 2.912329 21.706371-9.581216 29.217439-41.661865 25.058722-82.880639 50.825572-124.271328 76.323293-17.877159-22.463618-35.265178-45.343721-53.727669-67.294662-14.570857-17.300015-29.327956-32.080649-13.507642-57.970297 9.531074-15.636119-0.795109-31.714306-14.475689-42.432414-14.045901-10.987239-29.694299-12.552897-45.527916-2.838652-15.587 9.543354-26.672476 26.647917-18.915815 40.939411 18.158568 33.549094-5.174859 50.213635-21.754467 70.818929-14.877849 18.500353-29.65746 37.09792-44.500516 55.645344-49.638537-16.051581-86.552262-53.41863-130.941238-78.208222-10.376325-5.8001-6.007831-14.706957-5.494131-23.246447 1.651616-26.917046-11.697413-43.582611-37.96466-46.5195-22.722514-2.51938-39.287795 9.152451-43.38716 32.154327-4.686742 26.060539 6.484691 45.172829 33.416064 49.381688 16.932648 2.691295 22.317285 11.476379 26.464745 26.109657 13.56904 48.059576 29.351492 95.53382 42.174542 143.813407 4.551666 17.152658 10.423397 25.546839 29.42517 25.106817 61.322647-1.468444 122.695436-1.542122 184.030363-2.154059 67.439972 0.684592 134.917806 0.466628 202.321962 2.544962 20.200064 0.610914 25.780153-9.470699 30.098505-25.155936 12.980639-46.860261 26.230408-93.624331 39.654138-140.362818 4.052293-14.144138 7.634888-26.795273 26.759457-30.80868 25.892717-5.476735 37.074384-25.200962 30.188557-51.115168zM224.644363 730.117716l-73.131601-204.745151h-87.738273v20.480451l140.388401 350.981746h43.862996l144.791688-348.044858v-23.417339h-90.687442l-77.485769 204.745151zM565.370535 610.211812h38.016848v-84.84027H435.224406v84.84027h42.406832v201.78575h-42.406832v84.8372h175.467337v-83.370803l-45.321208-2.911306V610.211812zM869.553419 525.372565H689.668469v371.46322h83.360569v-92.131327l89.207741-4.403286s96.523357-16.07614 96.523358-138.92098c-0.001023-122.841769-89.206718-136.007627-89.206718-136.007627z m-23.394827 185.730075H777.420045v-99.447966h64.333214s33.646308 13.165858 33.646308 49.725518-29.240975 49.722448-29.240975 49.722448z"></path>
+                </svg>
+            </div>
+            <div style="font-size: 12px;">VIP导购专区</div>
+
+        </li>
+        <li id="goods_cart_id" style="flex: 1;display: block;text-align: center;">
+            <div style="margin-bottom: -0.2rem;margin-top: 0.2rem;">
+                <svg style="height: 1.5em;width: 1.5em;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                    <path d="M921.6 302.933333c-14.933333-17.066667-34.133333-25.6-57.6-25.6H343.466667c-12.8 0-21.333333 8.533333-21.333334 21.333334s8.533333 21.333333 21.333334 21.333333h520.533333c10.666667 0 19.2 4.266667 25.6 10.666667 4.266667 6.4 8.533333 14.933333 6.4 25.6l-49.066667 341.333333c-2.133333 14.933333-21.333333 27.733333-38.4 27.733333H349.866667c-17.066667 0-36.266667-19.2-38.4-40.533333l-53.333334-371.2-29.866666-157.866667C224 115.2 187.733333 85.333333 147.2 85.333333H106.666667c-12.8 0-21.333333 10.666667-21.333334 21.333334s10.666667 21.333333 21.333334 21.333333h40.533333c19.2 0 36.266667 14.933333 38.4 34.133333l29.866667 157.866667 53.333333 371.2c4.266667 42.666667 40.533333 76.8 78.933333 76.8h460.8c40.533333 0 74.666667-27.733333 81.066667-64L938.666667 362.666667c4.266667-21.333333-2.133333-42.666667-17.066667-59.733334z"></path>
+                </svg>
+            </div>
+            <div style="font-size: 12px;">购物车</div>
+
+        </li>
+        <li style="flex: 1;display: block;text-align: center;" id="orderCenter">
+            <div style="margin-bottom: -0.2rem;margin-top: 0.2rem;">
+                <svg style="height: 1.5em;width: 1.5em;" id="icon-fenlei_b" viewBox="0 0 1024 1024">
+                    <path d="M800 352C800 194.133333 672 64 512 64S224 194.133333 224 352c0 117.333333 70.4 219.733333 172.8 264.533333-130.133333 42.666667-236.8 153.6-270.933333 296.533334-2.133333 10.666667 4.266667 23.466667 14.933333 25.6h4.266667c10.666667 0 19.2-6.4 21.333333-17.066667C204.8 759.466667 349.866667 640 509.866667 640h2.133333c160 0 288-130.133333 288-288z m-533.333333 0C266.666667 217.6 377.6 106.666667 512 106.666667s245.333333 110.933333 245.333333 245.333333S646.4 597.333333 512 597.333333s-245.333333-110.933333-245.333333-245.333333zM893.866667 913.066667c-23.466667-96-78.933333-179.2-157.866667-234.666667l-21.333333-14.933333c-10.666667-6.4-23.466667-4.266667-29.866667 6.4-6.4 10.666667-4.266667 23.466667 6.4 29.866666l21.333333 14.933334c70.4 49.066667 121.6 123.733333 140.8 211.2 2.133333 10.666667 10.666667 17.066667 21.333334 17.066666h4.266666c10.666667-6.4 17.066667-17.066667 14.933334-29.866666z"></path>
+                </svg>
+            </div>
+            <div style="font-size: 12px;">订单中心</div>
+
+        </li>
+    </ul>
+</div>
+
+</body>
+<script th:src="@{/js/mui.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}" ></script>
+<script>
+    $(function(){
+        var slider = mui("#slider");
+        slider.slider({
+            interval: 5000
+        });
+        mui("body").on('tap','.goodsDetail_li',function(){
+
+            var goodsId = $(this).attr("goodsId")
+            ;
+            var id = 'goodsDetail'+goodsId;
+            var url = '/showView/' +goodsId;
+            mui.openWindow({
+                id:id ,
+                url:url
+            });
+        })
+        <!--购物车 -->
+        $("#goods_cart_id").on('tap',function(){
+            mui.openWindow({
+                id:'goods_cart_id' ,
+                url:'/goodsCart'
+            });
+        })
+
+        $("#orderCenter").on('tap',function(){
+            mui.openWindow({
+                id:'orderCenter',
+                url:'/orderCenter'
+            });
+        })
+
+    });
+</script>
+
+</html>

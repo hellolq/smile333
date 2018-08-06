@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smile.mapper.AcceptGoodsAddressDatabaseMapper" >
+
+    <select id="selectDefaultAddressDatabaseByPersonId"  resultType="com.smile.pojo.AcceptGoodsAddressDatabase">
+        SELECT id,NAME,tel,address FROM AcceptGoodsAddress WHERE personid =  #{personId} AND STATUS = 1
+    </select>
+
+    <select id="selectAllAcceptGoodsAddressDatabase"  resultType="com.smile.pojo.AcceptGoodsAddressDatabase">
+        SELECT id,NAME,tel,address,status FROM AcceptGoodsAddress WHERE personid =  #{personId} ORDER BY STATUS DESC
+    </select>
+
+
+
+</mapper>

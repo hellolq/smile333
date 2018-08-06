@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smile.mapper.ShopOrdersDOMapper">
+  <resultMap id="BaseResultMap" type="com.smile.pojo.ShopOrdersDO">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="SupplierId" jdbcType="INTEGER" property="supplierid" />
+    <result column="UserId" jdbcType="INTEGER" property="userid" />
+    <result column="ToTalOrderNo" jdbcType="VARCHAR" property="totalorderno" />
+    <result column="OrderNo" jdbcType="VARCHAR" property="orderno" />
+    <result column="OrderState" jdbcType="INTEGER" property="orderstate" />
+    <result column="PayType" jdbcType="INTEGER" property="paytype" />
+    <result column="PayState" jdbcType="INTEGER" property="paystate" />
+    <result column="ExpressId" jdbcType="INTEGER" property="expressid" />
+    <result column="ExpressName" jdbcType="VARCHAR" property="expressname" />
+    <result column="ExpressTemplateId" jdbcType="INTEGER" property="expresstemplateid" />
+    <result column="GoodsTotalCostPrice" jdbcType="DECIMAL" property="goodstotalcostprice" />
+    <result column="GoodsTotalPrice" jdbcType="DECIMAL" property="goodstotalprice" />
+    <result column="GoodsTotalPVPrice" jdbcType="DECIMAL" property="goodstotalpvprice" />
+    <result column="ExpressPrice" jdbcType="DECIMAL" property="expressprice" />
+    <result column="TotalPrice" jdbcType="DECIMAL" property="totalprice" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="PayTime" jdbcType="BIGINT" property="paytime" />
+    <result column="OuttranOrderNo" jdbcType="VARCHAR" property="outtranorderno" />
+    <result column="LeaveWord" jdbcType="VARCHAR" property="leaveword" />
+    <result column="LeaveWordTwo" jdbcType="VARCHAR" property="leavewordtwo" />
+    <result column="BalanceOne" jdbcType="DECIMAL" property="balanceone" />
+    <result column="BalanceTwo" jdbcType="DECIMAL" property="balancetwo" />
+    <result column="Integral" jdbcType="DECIMAL" property="integral" />
+    <result column="WeixinMoney" jdbcType="DECIMAL" property="weixinmoney" />
+    <result column="IsEnabled" jdbcType="TINYINT" property="isenabled" />
+    <result column="IsDeleted" jdbcType="TINYINT" property="isdeleted" />
+    <result column="CreateTime" jdbcType="INTEGER" property="createtime" />
+    <result column="UpdateTime" jdbcType="INTEGER" property="updatetime" />
+    <result column="ReceiverName" jdbcType="VARCHAR" property="receivername" />
+    <result column="ReceiverMobile" jdbcType="VARCHAR" property="receivermobile" />
+    <result column="ReceiverTelPhone" jdbcType="VARCHAR" property="receivertelphone" />
+    <result column="ReceiverProvinceId" jdbcType="INTEGER" property="receiverprovinceid" />
+    <result column="ReceiverCityId" jdbcType="INTEGER" property="receivercityid" />
+    <result column="ReceiverAreaId" jdbcType="INTEGER" property="receiverareaid" />
+    <result column="ReceiverAddress" jdbcType="VARCHAR" property="receiveraddress" />
+    <result column="SendExpressId" jdbcType="INTEGER" property="sendexpressid" />
+    <result column="SendExpressName" jdbcType="VARCHAR" property="sendexpressname" />
+    <result column="SendExpressNo" jdbcType="VARCHAR" property="sendexpressno" />
+    <result column="IsInvoice" jdbcType="TINYINT" property="isinvoice" />
+    <result column="InvoiceType" jdbcType="VARCHAR" property="invoicetype" />
+    <result column="InvoiceTitle" jdbcType="VARCHAR" property="invoicetitle" />
+    <result column="H5PayOrderNo" jdbcType="VARCHAR" property="h5payorderno" />
+    <result column="wxOpenId" jdbcType="VARCHAR" property="wxopenid" />
+    <result column="NewTime" jdbcType="BIGINT" property="newtime" />
+    <result column="BargainId" jdbcType="INTEGER" property="bargainid" />
+    <result column="AllowMaxUseIntegral" jdbcType="INTEGER" property="allowmaxuseintegral" />
+    <result column="RealUseIntegral" jdbcType="INTEGER" property="realuseintegral" />
+    <result column="TotalPriceTwo" jdbcType="DECIMAL" property="totalpricetwo" />
+    <result column="GoodsTotalPriceTwo" jdbcType="DECIMAL" property="goodstotalpricetwo" />
+    <result column="IsUseIntegralPay" jdbcType="TINYINT" property="isuseintegralpay" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, SupplierId, UserId, ToTalOrderNo, OrderNo, OrderState, PayType, PayState, ExpressId, 
+    ExpressName, ExpressTemplateId, GoodsTotalCostPrice, GoodsTotalPrice, GoodsTotalPVPrice, 
+    ExpressPrice, TotalPrice, Remark, PayTime, OuttranOrderNo, LeaveWord, LeaveWordTwo, 
+    BalanceOne, BalanceTwo, Integral, WeixinMoney, IsEnabled, IsDeleted, CreateTime, 
+    UpdateTime, ReceiverName, ReceiverMobile, ReceiverTelPhone, ReceiverProvinceId, ReceiverCityId, 
+    ReceiverAreaId, ReceiverAddress, SendExpressId, SendExpressName, SendExpressNo, IsInvoice, 
+    InvoiceType, InvoiceTitle, H5PayOrderNo, wxOpenId, NewTime, BargainId, AllowMaxUseIntegral, 
+    RealUseIntegral, TotalPriceTwo, GoodsTotalPriceTwo, IsUseIntegralPay
+  </sql>
+  <select id="selectByExample" parameterType="com.smile.pojo.ShopOrdersDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shoporders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shoporders
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shoporders
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.smile.pojo.ShopOrdersDOExample">
+    delete from shoporders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.smile.pojo.ShopOrdersDO">
+    insert into shoporders (Id, SupplierId, UserId, 
+      ToTalOrderNo, OrderNo, OrderState, 
+      PayType, PayState, ExpressId, 
+      ExpressName, ExpressTemplateId, GoodsTotalCostPrice, 
+      GoodsTotalPrice, GoodsTotalPVPrice, ExpressPrice, 
+      TotalPrice, Remark, PayTime, 
+      OuttranOrderNo, LeaveWord, LeaveWordTwo, 
+      BalanceOne, BalanceTwo, Integral, 
+      WeixinMoney, IsEnabled, IsDeleted, 
+      CreateTime, UpdateTime, ReceiverName, 
+      ReceiverMobile, ReceiverTelPhone, ReceiverProvinceId, 
+      ReceiverCityId, ReceiverAreaId, ReceiverAddress, 
+      SendExpressId, SendExpressName, SendExpressNo, 
+      IsInvoice, InvoiceType, InvoiceTitle, 
+      H5PayOrderNo, wxOpenId, NewTime, 
+      BargainId, AllowMaxUseIntegral, RealUseIntegral, 
+      TotalPriceTwo, GoodsTotalPriceTwo, IsUseIntegralPay
+      )
+    values (#{id,jdbcType=INTEGER}, #{supplierid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{totalorderno,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{orderstate,jdbcType=INTEGER}, 
+      #{paytype,jdbcType=INTEGER}, #{paystate,jdbcType=INTEGER}, #{expressid,jdbcType=INTEGER}, 
+      #{expressname,jdbcType=VARCHAR}, #{expresstemplateid,jdbcType=INTEGER}, #{goodstotalcostprice,jdbcType=DECIMAL}, 
+      #{goodstotalprice,jdbcType=DECIMAL}, #{goodstotalpvprice,jdbcType=DECIMAL}, #{expressprice,jdbcType=DECIMAL}, 
+      #{totalprice,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, #{paytime,jdbcType=BIGINT}, 
+      #{outtranorderno,jdbcType=VARCHAR}, #{leaveword,jdbcType=VARCHAR}, #{leavewordtwo,jdbcType=VARCHAR}, 
+      #{balanceone,jdbcType=DECIMAL}, #{balancetwo,jdbcType=DECIMAL}, #{integral,jdbcType=DECIMAL}, 
+      #{weixinmoney,jdbcType=DECIMAL}, #{isenabled,jdbcType=TINYINT}, #{isdeleted,jdbcType=TINYINT}, 
+      #{createtime,jdbcType=INTEGER}, #{updatetime,jdbcType=INTEGER}, #{receivername,jdbcType=VARCHAR}, 
+      #{receivermobile,jdbcType=VARCHAR}, #{receivertelphone,jdbcType=VARCHAR}, #{receiverprovinceid,jdbcType=INTEGER}, 
+      #{receivercityid,jdbcType=INTEGER}, #{receiverareaid,jdbcType=INTEGER}, #{receiveraddress,jdbcType=VARCHAR}, 
+      #{sendexpressid,jdbcType=INTEGER}, #{sendexpressname,jdbcType=VARCHAR}, #{sendexpressno,jdbcType=VARCHAR}, 
+      #{isinvoice,jdbcType=TINYINT}, #{invoicetype,jdbcType=VARCHAR}, #{invoicetitle,jdbcType=VARCHAR}, 
+      #{h5payorderno,jdbcType=VARCHAR}, #{wxopenid,jdbcType=VARCHAR}, #{newtime,jdbcType=BIGINT}, 
+      #{bargainid,jdbcType=INTEGER}, #{allowmaxuseintegral,jdbcType=INTEGER}, #{realuseintegral,jdbcType=INTEGER}, 
+      #{totalpricetwo,jdbcType=DECIMAL}, #{goodstotalpricetwo,jdbcType=DECIMAL}, #{isuseintegralpay,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.smile.pojo.ShopOrdersDO">
+    insert into shoporders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="supplierid != null">
+        SupplierId,
+      </if>
+      <if test="userid != null">
+        UserId,
+      </if>
+      <if test="totalorderno != null">
+        ToTalOrderNo,
+      </if>
+      <if test="orderno != null">
+        OrderNo,
+      </if>
+      <if test="orderstate != null">
+        OrderState,
+      </if>
+      <if test="paytype != null">
+        PayType,
+      </if>
+      <if test="paystate != null">
+        PayState,
+      </if>
+      <if test="expressid != null">
+        ExpressId,
+      </if>
+      <if test="expressname != null">
+        ExpressName,
+      </if>
+      <if test="expresstemplateid != null">
+        ExpressTemplateId,
+      </if>
+      <if test="goodstotalcostprice != null">
+        GoodsTotalCostPrice,
+      </if>
+      <if test="goodstotalprice != null">
+        GoodsTotalPrice,
+      </if>
+      <if test="goodstotalpvprice != null">
+        GoodsTotalPVPrice,
+      </if>
+      <if test="expressprice != null">
+        ExpressPrice,
+      </if>
+      <if test="totalprice != null">
+        TotalPrice,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="paytime != null">
+        PayTime,
+      </if>
+      <if test="outtranorderno != null">
+        OuttranOrderNo,
+      </if>
+      <if test="leaveword != null">
+        LeaveWord,
+      </if>
+      <if test="leavewordtwo != null">
+        LeaveWordTwo,
+      </if>
+      <if test="balanceone != null">
+        BalanceOne,
+      </if>
+      <if test="balancetwo != null">
+        BalanceTwo,
+      </if>
+      <if test="integral != null">
+        Integral,
+      </if>
+      <if test="weixinmoney != null">
+        WeixinMoney,
+      </if>
+      <if test="isenabled != null">
+        IsEnabled,
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="receivername != null">
+        ReceiverName,
+      </if>
+      <if test="receivermobile != null">
+        ReceiverMobile,
+      </if>
+      <if test="receivertelphone != null">
+        ReceiverTelPhone,
+      </if>
+      <if test="receiverprovinceid != null">
+        ReceiverProvinceId,
+      </if>
+      <if test="receivercityid != null">
+        ReceiverCityId,
+      </if>
+      <if test="receiverareaid != null">
+        ReceiverAreaId,
+      </if>
+      <if test="receiveraddress != null">
+        ReceiverAddress,
+      </if>
+      <if test="sendexpressid != null">
+        SendExpressId,
+      </if>
+      <if test="sendexpressname != null">
+        SendExpressName,
+      </if>
+      <if test="sendexpressno != null">
+        SendExpressNo,
+      </if>
+      <if test="isinvoice != null">
+        IsInvoice,
+      </if>
+      <if test="invoicetype != null">
+        InvoiceType,
+      </if>
+      <if test="invoicetitle != null">
+        InvoiceTitle,
+      </if>
+      <if test="h5payorderno != null">
+        H5PayOrderNo,
+      </if>
+      <if test="wxopenid != null">
+        wxOpenId,
+      </if>
+      <if test="newtime != null">
+        NewTime,
+      </if>
+      <if test="bargainid != null">
+        BargainId,
+      </if>
+      <if test="allowmaxuseintegral != null">
+        AllowMaxUseIntegral,
+      </if>
+      <if test="realuseintegral != null">
+        RealUseIntegral,
+      </if>
+      <if test="totalpricetwo != null">
+        TotalPriceTwo,
+      </if>
+      <if test="goodstotalpricetwo != null">
+        GoodsTotalPriceTwo,
+      </if>
+      <if test="isuseintegralpay != null">
+        IsUseIntegralPay,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="supplierid != null">
+        #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="totalorderno != null">
+        #{totalorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null">
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="orderstate != null">
+        #{orderstate,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null">
+        #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="paystate != null">
+        #{paystate,jdbcType=INTEGER},
+      </if>
+      <if test="expressid != null">
+        #{expressid,jdbcType=INTEGER},
+      </if>
+      <if test="expressname != null">
+        #{expressname,jdbcType=VARCHAR},
+      </if>
+      <if test="expresstemplateid != null">
+        #{expresstemplateid,jdbcType=INTEGER},
+      </if>
+      <if test="goodstotalcostprice != null">
+        #{goodstotalcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodstotalprice != null">
+        #{goodstotalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodstotalpvprice != null">
+        #{goodstotalpvprice,jdbcType=DECIMAL},
+      </if>
+      <if test="expressprice != null">
+        #{expressprice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalprice != null">
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null">
+        #{paytime,jdbcType=BIGINT},
+      </if>
+      <if test="outtranorderno != null">
+        #{outtranorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveword != null">
+        #{leaveword,jdbcType=VARCHAR},
+      </if>
+      <if test="leavewordtwo != null">
+        #{leavewordtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceone != null">
+        #{balanceone,jdbcType=DECIMAL},
+      </if>
+      <if test="balancetwo != null">
+        #{balancetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=DECIMAL},
+      </if>
+      <if test="weixinmoney != null">
+        #{weixinmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="isenabled != null">
+        #{isenabled,jdbcType=TINYINT},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="receivername != null">
+        #{receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="receivermobile != null">
+        #{receivermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receivertelphone != null">
+        #{receivertelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverprovinceid != null">
+        #{receiverprovinceid,jdbcType=INTEGER},
+      </if>
+      <if test="receivercityid != null">
+        #{receivercityid,jdbcType=INTEGER},
+      </if>
+      <if test="receiverareaid != null">
+        #{receiverareaid,jdbcType=INTEGER},
+      </if>
+      <if test="receiveraddress != null">
+        #{receiveraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sendexpressid != null">
+        #{sendexpressid,jdbcType=INTEGER},
+      </if>
+      <if test="sendexpressname != null">
+        #{sendexpressname,jdbcType=VARCHAR},
+      </if>
+      <if test="sendexpressno != null">
+        #{sendexpressno,jdbcType=VARCHAR},
+      </if>
+      <if test="isinvoice != null">
+        #{isinvoice,jdbcType=TINYINT},
+      </if>
+      <if test="invoicetype != null">
+        #{invoicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetitle != null">
+        #{invoicetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="h5payorderno != null">
+        #{h5payorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="wxopenid != null">
+        #{wxopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="newtime != null">
+        #{newtime,jdbcType=BIGINT},
+      </if>
+      <if test="bargainid != null">
+        #{bargainid,jdbcType=INTEGER},
+      </if>
+      <if test="allowmaxuseintegral != null">
+        #{allowmaxuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="realuseintegral != null">
+        #{realuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="totalpricetwo != null">
+        #{totalpricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="goodstotalpricetwo != null">
+        #{goodstotalpricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="isuseintegralpay != null">
+        #{isuseintegralpay,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.smile.pojo.ShopOrdersDOExample" resultType="java.lang.Long">
+    select count(*) from shoporders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update shoporders
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.supplierid != null">
+        SupplierId = #{record.supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null">
+        UserId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalorderno != null">
+        ToTalOrderNo = #{record.totalorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderno != null">
+        OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderstate != null">
+        OrderState = #{record.orderstate,jdbcType=INTEGER},
+      </if>
+      <if test="record.paytype != null">
+        PayType = #{record.paytype,jdbcType=INTEGER},
+      </if>
+      <if test="record.paystate != null">
+        PayState = #{record.paystate,jdbcType=INTEGER},
+      </if>
+      <if test="record.expressid != null">
+        ExpressId = #{record.expressid,jdbcType=INTEGER},
+      </if>
+      <if test="record.expressname != null">
+        ExpressName = #{record.expressname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expresstemplateid != null">
+        ExpressTemplateId = #{record.expresstemplateid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodstotalcostprice != null">
+        GoodsTotalCostPrice = #{record.goodstotalcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodstotalprice != null">
+        GoodsTotalPrice = #{record.goodstotalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodstotalpvprice != null">
+        GoodsTotalPVPrice = #{record.goodstotalpvprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.expressprice != null">
+        ExpressPrice = #{record.expressprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalprice != null">
+        TotalPrice = #{record.totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null">
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paytime != null">
+        PayTime = #{record.paytime,jdbcType=BIGINT},
+      </if>
+      <if test="record.outtranorderno != null">
+        OuttranOrderNo = #{record.outtranorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leaveword != null">
+        LeaveWord = #{record.leaveword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leavewordtwo != null">
+        LeaveWordTwo = #{record.leavewordtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balanceone != null">
+        BalanceOne = #{record.balanceone,jdbcType=DECIMAL},
+      </if>
+      <if test="record.balancetwo != null">
+        BalanceTwo = #{record.balancetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="record.integral != null">
+        Integral = #{record.integral,jdbcType=DECIMAL},
+      </if>
+      <if test="record.weixinmoney != null">
+        WeixinMoney = #{record.weixinmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isenabled != null">
+        IsEnabled = #{record.isenabled,jdbcType=TINYINT},
+      </if>
+      <if test="record.isdeleted != null">
+        IsDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.createtime != null">
+        CreateTime = #{record.createtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatetime != null">
+        UpdateTime = #{record.updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.receivername != null">
+        ReceiverName = #{record.receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivermobile != null">
+        ReceiverMobile = #{record.receivermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivertelphone != null">
+        ReceiverTelPhone = #{record.receivertelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverprovinceid != null">
+        ReceiverProvinceId = #{record.receiverprovinceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.receivercityid != null">
+        ReceiverCityId = #{record.receivercityid,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiverareaid != null">
+        ReceiverAreaId = #{record.receiverareaid,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveraddress != null">
+        ReceiverAddress = #{record.receiveraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendexpressid != null">
+        SendExpressId = #{record.sendexpressid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendexpressname != null">
+        SendExpressName = #{record.sendexpressname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendexpressno != null">
+        SendExpressNo = #{record.sendexpressno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isinvoice != null">
+        IsInvoice = #{record.isinvoice,jdbcType=TINYINT},
+      </if>
+      <if test="record.invoicetype != null">
+        InvoiceType = #{record.invoicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoicetitle != null">
+        InvoiceTitle = #{record.invoicetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.h5payorderno != null">
+        H5PayOrderNo = #{record.h5payorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxopenid != null">
+        wxOpenId = #{record.wxopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newtime != null">
+        NewTime = #{record.newtime,jdbcType=BIGINT},
+      </if>
+      <if test="record.bargainid != null">
+        BargainId = #{record.bargainid,jdbcType=INTEGER},
+      </if>
+      <if test="record.allowmaxuseintegral != null">
+        AllowMaxUseIntegral = #{record.allowmaxuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.realuseintegral != null">
+        RealUseIntegral = #{record.realuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalpricetwo != null">
+        TotalPriceTwo = #{record.totalpricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodstotalpricetwo != null">
+        GoodsTotalPriceTwo = #{record.goodstotalpricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isuseintegralpay != null">
+        IsUseIntegralPay = #{record.isuseintegralpay,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update shoporders
+    set Id = #{record.id,jdbcType=INTEGER},
+      SupplierId = #{record.supplierid,jdbcType=INTEGER},
+      UserId = #{record.userid,jdbcType=INTEGER},
+      ToTalOrderNo = #{record.totalorderno,jdbcType=VARCHAR},
+      OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      OrderState = #{record.orderstate,jdbcType=INTEGER},
+      PayType = #{record.paytype,jdbcType=INTEGER},
+      PayState = #{record.paystate,jdbcType=INTEGER},
+      ExpressId = #{record.expressid,jdbcType=INTEGER},
+      ExpressName = #{record.expressname,jdbcType=VARCHAR},
+      ExpressTemplateId = #{record.expresstemplateid,jdbcType=INTEGER},
+      GoodsTotalCostPrice = #{record.goodstotalcostprice,jdbcType=DECIMAL},
+      GoodsTotalPrice = #{record.goodstotalprice,jdbcType=DECIMAL},
+      GoodsTotalPVPrice = #{record.goodstotalpvprice,jdbcType=DECIMAL},
+      ExpressPrice = #{record.expressprice,jdbcType=DECIMAL},
+      TotalPrice = #{record.totalprice,jdbcType=DECIMAL},
+      Remark = #{record.remark,jdbcType=VARCHAR},
+      PayTime = #{record.paytime,jdbcType=BIGINT},
+      OuttranOrderNo = #{record.outtranorderno,jdbcType=VARCHAR},
+      LeaveWord = #{record.leaveword,jdbcType=VARCHAR},
+      LeaveWordTwo = #{record.leavewordtwo,jdbcType=VARCHAR},
+      BalanceOne = #{record.balanceone,jdbcType=DECIMAL},
+      BalanceTwo = #{record.balancetwo,jdbcType=DECIMAL},
+      Integral = #{record.integral,jdbcType=DECIMAL},
+      WeixinMoney = #{record.weixinmoney,jdbcType=DECIMAL},
+      IsEnabled = #{record.isenabled,jdbcType=TINYINT},
+      IsDeleted = #{record.isdeleted,jdbcType=TINYINT},
+      CreateTime = #{record.createtime,jdbcType=INTEGER},
+      UpdateTime = #{record.updatetime,jdbcType=INTEGER},
+      ReceiverName = #{record.receivername,jdbcType=VARCHAR},
+      ReceiverMobile = #{record.receivermobile,jdbcType=VARCHAR},
+      ReceiverTelPhone = #{record.receivertelphone,jdbcType=VARCHAR},
+      ReceiverProvinceId = #{record.receiverprovinceid,jdbcType=INTEGER},
+      ReceiverCityId = #{record.receivercityid,jdbcType=INTEGER},
+      ReceiverAreaId = #{record.receiverareaid,jdbcType=INTEGER},
+      ReceiverAddress = #{record.receiveraddress,jdbcType=VARCHAR},
+      SendExpressId = #{record.sendexpressid,jdbcType=INTEGER},
+      SendExpressName = #{record.sendexpressname,jdbcType=VARCHAR},
+      SendExpressNo = #{record.sendexpressno,jdbcType=VARCHAR},
+      IsInvoice = #{record.isinvoice,jdbcType=TINYINT},
+      InvoiceType = #{record.invoicetype,jdbcType=VARCHAR},
+      InvoiceTitle = #{record.invoicetitle,jdbcType=VARCHAR},
+      H5PayOrderNo = #{record.h5payorderno,jdbcType=VARCHAR},
+      wxOpenId = #{record.wxopenid,jdbcType=VARCHAR},
+      NewTime = #{record.newtime,jdbcType=BIGINT},
+      BargainId = #{record.bargainid,jdbcType=INTEGER},
+      AllowMaxUseIntegral = #{record.allowmaxuseintegral,jdbcType=INTEGER},
+      RealUseIntegral = #{record.realuseintegral,jdbcType=INTEGER},
+      TotalPriceTwo = #{record.totalpricetwo,jdbcType=DECIMAL},
+      GoodsTotalPriceTwo = #{record.goodstotalpricetwo,jdbcType=DECIMAL},
+      IsUseIntegralPay = #{record.isuseintegralpay,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smile.pojo.ShopOrdersDO">
+    update shoporders
+    <set>
+      <if test="supplierid != null">
+        SupplierId = #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="totalorderno != null">
+        ToTalOrderNo = #{totalorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null">
+        OrderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="orderstate != null">
+        OrderState = #{orderstate,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null">
+        PayType = #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="paystate != null">
+        PayState = #{paystate,jdbcType=INTEGER},
+      </if>
+      <if test="expressid != null">
+        ExpressId = #{expressid,jdbcType=INTEGER},
+      </if>
+      <if test="expressname != null">
+        ExpressName = #{expressname,jdbcType=VARCHAR},
+      </if>
+      <if test="expresstemplateid != null">
+        ExpressTemplateId = #{expresstemplateid,jdbcType=INTEGER},
+      </if>
+      <if test="goodstotalcostprice != null">
+        GoodsTotalCostPrice = #{goodstotalcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodstotalprice != null">
+        GoodsTotalPrice = #{goodstotalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodstotalpvprice != null">
+        GoodsTotalPVPrice = #{goodstotalpvprice,jdbcType=DECIMAL},
+      </if>
+      <if test="expressprice != null">
+        ExpressPrice = #{expressprice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalprice != null">
+        TotalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null">
+        PayTime = #{paytime,jdbcType=BIGINT},
+      </if>
+      <if test="outtranorderno != null">
+        OuttranOrderNo = #{outtranorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveword != null">
+        LeaveWord = #{leaveword,jdbcType=VARCHAR},
+      </if>
+      <if test="leavewordtwo != null">
+        LeaveWordTwo = #{leavewordtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceone != null">
+        BalanceOne = #{balanceone,jdbcType=DECIMAL},
+      </if>
+      <if test="balancetwo != null">
+        BalanceTwo = #{balancetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null">
+        Integral = #{integral,jdbcType=DECIMAL},
+      </if>
+      <if test="weixinmoney != null">
+        WeixinMoney = #{weixinmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="isenabled != null">
+        IsEnabled = #{isenabled,jdbcType=TINYINT},
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted = #{isdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="receivername != null">
+        ReceiverName = #{receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="receivermobile != null">
+        ReceiverMobile = #{receivermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receivertelphone != null">
+        ReceiverTelPhone = #{receivertelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverprovinceid != null">
+        ReceiverProvinceId = #{receiverprovinceid,jdbcType=INTEGER},
+      </if>
+      <if test="receivercityid != null">
+        ReceiverCityId = #{receivercityid,jdbcType=INTEGER},
+      </if>
+      <if test="receiverareaid != null">
+        ReceiverAreaId = #{receiverareaid,jdbcType=INTEGER},
+      </if>
+      <if test="receiveraddress != null">
+        ReceiverAddress = #{receiveraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sendexpressid != null">
+        SendExpressId = #{sendexpressid,jdbcType=INTEGER},
+      </if>
+      <if test="sendexpressname != null">
+        SendExpressName = #{sendexpressname,jdbcType=VARCHAR},
+      </if>
+      <if test="sendexpressno != null">
+        SendExpressNo = #{sendexpressno,jdbcType=VARCHAR},
+      </if>
+      <if test="isinvoice != null">
+        IsInvoice = #{isinvoice,jdbcType=TINYINT},
+      </if>
+      <if test="invoicetype != null">
+        InvoiceType = #{invoicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetitle != null">
+        InvoiceTitle = #{invoicetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="h5payorderno != null">
+        H5PayOrderNo = #{h5payorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="wxopenid != null">
+        wxOpenId = #{wxopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="newtime != null">
+        NewTime = #{newtime,jdbcType=BIGINT},
+      </if>
+      <if test="bargainid != null">
+        BargainId = #{bargainid,jdbcType=INTEGER},
+      </if>
+      <if test="allowmaxuseintegral != null">
+        AllowMaxUseIntegral = #{allowmaxuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="realuseintegral != null">
+        RealUseIntegral = #{realuseintegral,jdbcType=INTEGER},
+      </if>
+      <if test="totalpricetwo != null">
+        TotalPriceTwo = #{totalpricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="goodstotalpricetwo != null">
+        GoodsTotalPriceTwo = #{goodstotalpricetwo,jdbcType=DECIMAL},
+      </if>
+      <if test="isuseintegralpay != null">
+        IsUseIntegralPay = #{isuseintegralpay,jdbcType=TINYINT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smile.pojo.ShopOrdersDO">
+    update shoporders
+    set SupplierId = #{supplierid,jdbcType=INTEGER},
+      UserId = #{userid,jdbcType=INTEGER},
+      ToTalOrderNo = #{totalorderno,jdbcType=VARCHAR},
+      OrderNo = #{orderno,jdbcType=VARCHAR},
+      OrderState = #{orderstate,jdbcType=INTEGER},
+      PayType = #{paytype,jdbcType=INTEGER},
+      PayState = #{paystate,jdbcType=INTEGER},
+      ExpressId = #{expressid,jdbcType=INTEGER},
+      ExpressName = #{expressname,jdbcType=VARCHAR},
+      ExpressTemplateId = #{expresstemplateid,jdbcType=INTEGER},
+      GoodsTotalCostPrice = #{goodstotalcostprice,jdbcType=DECIMAL},
+      GoodsTotalPrice = #{goodstotalprice,jdbcType=DECIMAL},
+      GoodsTotalPVPrice = #{goodstotalpvprice,jdbcType=DECIMAL},
+      ExpressPrice = #{expressprice,jdbcType=DECIMAL},
+      TotalPrice = #{totalprice,jdbcType=DECIMAL},
+      Remark = #{remark,jdbcType=VARCHAR},
+      PayTime = #{paytime,jdbcType=BIGINT},
+      OuttranOrderNo = #{outtranorderno,jdbcType=VARCHAR},
+      LeaveWord = #{leaveword,jdbcType=VARCHAR},
+      LeaveWordTwo = #{leavewordtwo,jdbcType=VARCHAR},
+      BalanceOne = #{balanceone,jdbcType=DECIMAL},
+      BalanceTwo = #{balancetwo,jdbcType=DECIMAL},
+      Integral = #{integral,jdbcType=DECIMAL},
+      WeixinMoney = #{weixinmoney,jdbcType=DECIMAL},
+      IsEnabled = #{isenabled,jdbcType=TINYINT},
+      IsDeleted = #{isdeleted,jdbcType=TINYINT},
+      CreateTime = #{createtime,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=INTEGER},
+      ReceiverName = #{receivername,jdbcType=VARCHAR},
+      ReceiverMobile = #{receivermobile,jdbcType=VARCHAR},
+      ReceiverTelPhone = #{receivertelphone,jdbcType=VARCHAR},
+      ReceiverProvinceId = #{receiverprovinceid,jdbcType=INTEGER},
+      ReceiverCityId = #{receivercityid,jdbcType=INTEGER},
+      ReceiverAreaId = #{receiverareaid,jdbcType=INTEGER},
+      ReceiverAddress = #{receiveraddress,jdbcType=VARCHAR},
+      SendExpressId = #{sendexpressid,jdbcType=INTEGER},
+      SendExpressName = #{sendexpressname,jdbcType=VARCHAR},
+      SendExpressNo = #{sendexpressno,jdbcType=VARCHAR},
+      IsInvoice = #{isinvoice,jdbcType=TINYINT},
+      InvoiceType = #{invoicetype,jdbcType=VARCHAR},
+      InvoiceTitle = #{invoicetitle,jdbcType=VARCHAR},
+      H5PayOrderNo = #{h5payorderno,jdbcType=VARCHAR},
+      wxOpenId = #{wxopenid,jdbcType=VARCHAR},
+      NewTime = #{newtime,jdbcType=BIGINT},
+      BargainId = #{bargainid,jdbcType=INTEGER},
+      AllowMaxUseIntegral = #{allowmaxuseintegral,jdbcType=INTEGER},
+      RealUseIntegral = #{realuseintegral,jdbcType=INTEGER},
+      TotalPriceTwo = #{totalpricetwo,jdbcType=DECIMAL},
+      GoodsTotalPriceTwo = #{goodstotalpricetwo,jdbcType=DECIMAL},
+      IsUseIntegralPay = #{isuseintegralpay,jdbcType=TINYINT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			html,
+			body,
+			div,
+			p,
+			span,
+			a,
+			abbr,
+			applet,
+			object,
+			iframe,
+			dl,
+			dt,
+			dd,
+			ul,
+			ol,
+			li,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			label,
+			pre,
+			form,
+			fieldset,
+			input,
+			textarea,
+			blockquote,
+			table,
+			caption,
+			tbody,
+			tr,
+			th,
+			td,
+			acronym,
+			address,
+			big,
+			cite,
+			code,
+			del,
+			dfn,
+			em,
+			font,
+			img,
+			ins,
+			kbd,
+			q,
+			s,
+			samp,
+			small,
+			strike,
+			strong,
+			sub,
+			sup,
+			tt,
+			var,
+			b,
+			u,
+			i,
+			center,
+			legend {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul,
+			li {
+				list-style-type: none;
+			}
+		</style>
+	</head>
+
+	<body style="font-family: " Lucida Grande ", Verdana, "Microsoft Yahei ", STXihei, hei; color: #364860;">
+		<div id="divHead" style="height: 45px; line-height: 45px; border-bottom: 1px solid #e3e6ee; 
+			background-color: #eef1f8; padding-left: 20px;">
+			<a href="#" style="color: #364860; text-decoration: none;">返回</a>
+		</div>
+
+		<div id="divBody" style="padding: 10px 20px 0 20px; overflow: hidden; min-width: 1024px;">
+			<div style="margin: 0 auto; width: 500px; background-color: #eef1f8; border: 1px solid #e3e6ee; 
+				border-radius: 5px; overflow: hidden;width: 100%;">
+				<ul style="overflow: hidden; padding: 20px 30px;">
+					<li style="line-height: 40px;overflow: hidden;">
+						<h6 style="font-size: 14px; float: left; width: 110px;">商品类别：</h6>
+						<label>公益产品</label>
+					</li>
+
+					<li style="line-height: 40px;overflow: hidden;">
+						<h6 style="font-size: 14px; float: left; width: 110px;">所属分类：</h6>
+						<select style="height: 32px; line-height: 32px; border: 1px solid #c8cbdc; border-radius: 3px;">
+							<option>请选择所属的分类</option>
+							<option>干货</option>
+							<option>个人洗护</option>
+						</select>
+					</li>
+
+					<li style="line-height: 40px;overflow: hidden;">
+						<h6 style="font-size: 14px; float: left; width: 110px;">商品名称：</h6>
+						<input style="border: 1px solid #c8cbdc; border-radius: 3px; height: 30px; line-height: 30px; width: 310px; padding-left: 5px;" value="德伦思DOLONS 福森不锈钢厨房刀具套装" />
+					</li>
+
+					<li style="line-height: 40px;overflow: hidden;">
+						<h6 style="font-size: 14px; float: left; width: 110px;">定时上架时间：</h6>
+						<input style="border: 1px solid #c8cbdc; border-radius: 3px; height: 30px; line-height: 30px; width: 310px; padding-left: 5px;" value="2018-05-07 15:23" /> 定时下架时间：
+						<input style="border: 1px solid #c8cbdc; border-radius: 3px; height: 30px; line-height: 30px; width: 310px; padding-left: 5px;" value="2018-06-07 15:23" />
+					</li>
+
+					<li style="line-height: 40px;overflow: hidden;">
+						<h6 style="font-size: 14px; float: left; width: 110px;">商品封面图：</h6>
+						<div style="margin-left: 110px; margin-top: 5px;">
+							<ul style="margin-bottom: 15px; overflow: hidden;">
+								<li style="width: 200px; height: 200px; padding: 2px; border: 1px solid #d2d2d2; float: left; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center; margin-right: 8px; overflow: hidden; text-align: center; margin-bottom: 8px; line-height: 200px; position: relative; background-color: #fff;">
+									<img id="mainImgUpImg" style="max-width: 200px; max-height: 200px;" src="http://rs.chankor.com/api/GetResources/290307" />
+								</li>
+
+							</ul>
+							<div>
+								<button id="mainImgChange" style="background-color: #717171;padding: 5px 60px; border-radius: 20px;color: white;">更换</button>
+							</div>
+							<span style="font-size: 14px;">推荐尺寸：280px x 280px（宽x高）</span>
+						</div>
+
+					</li>
+
+					<li style="line-height: 40px;overflow: hidden;">
+						<h6 style="font-size: 14px; float: left; width: 110px;">商品滚动图：</h6>
+						<div style="margin-left: 110px; margin-top: 5px;">
+							<ul style="margin-bottom: 15px; overflow: hidden;" id="carouselImgUl">
+								<li style="width: 200px; height: 200px; padding: 2px; border: 1px solid #d2d2d2; float: left; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center; margin-right: 8px; overflow: hidden; text-align: center; margin-bottom: 8px; line-height: 200px; position: relative; background-color: #fff;">
+									<img style="max-width: 200px; max-height: 200px;" src="http://rs.chankor.com/api/GetResources/290307" />
+								    <img class="imgRemove"  src="/img/del_icon.jpg" style="position: absolute;width: 25px;height: 25px;top: 10px;right: 10px;">
+								</li>
+								<li style="width: 200px; height: 200px; padding: 2px; border: 1px solid #d2d2d2; float: left; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center; margin-right: 8px; overflow: hidden; text-align: center; margin-bottom: 8px; line-height: 200px; position: relative; background-color: #fff;">
+									<img style="max-width: 200px; max-height: 200px;" src="http://rs.chankor.com/api/GetResources/290307" />
+								    <img class="imgRemove"  src="/img/del_icon.jpg" style="position: absolute;width: 25px;height: 25px;top: 10px;right: 10px;">
+								</li>
+								<li style="width: 200px; height: 200px; padding: 2px; border: 1px solid #d2d2d2; float: left; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center; margin-right: 8px; overflow: hidden; text-align: center; margin-bottom: 8px; line-height: 200px; position: relative; background-color: #fff;">
+									<img style="max-width: 200px; max-height: 200px;" src="http://rs.chankor.com/api/GetResources/290307" />
+								<img class="imgRemove"  src="/img/del_icon.jpg" style="position: absolute;width: 25px;height: 25px;top: 10px;right: 10px;">
+								</li>
+								<li style="width: 200px; height: 200px; padding: 2px; border: 1px solid #d2d2d2; float: left; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center; margin-right: 8px; overflow: hidden; text-align: center; margin-bottom: 8px; line-height: 200px; position: relative; background-color: #fff;">
+									<img style="max-width: 200px; max-height: 200px;" src="http://rs.chankor.com/api/GetResources/290307" />
+								<img class="imgRemove"  src="/img/del_icon.jpg" style="position: absolute;width: 25px;height: 25px;top: 10px;right: 10px;">
+								</li>
+								<li style="width: 200px; height: 200px; padding: 2px; border: 1px solid #d2d2d2; float: left; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center; margin-right: 8px; overflow: hidden; text-align: center; margin-bottom: 8px; line-height: 200px; position: relative; background-color: #fff;">
+									<img style="max-width: 200px; max-height: 200px;" src="http://rs.chankor.com/api/GetResources/290307" />
+								<img class="imgRemove"  src="/img/del_icon.jpg" style="position: absolute;width: 25px;height: 25px;top: 10px;right: 10px;">
+								</li>
+								<li style="width: 200px; height: 200px; padding: 2px; border: 1px solid #d2d2d2; float: left; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center; margin-right: 8px; overflow: hidden; text-align: center; margin-bottom: 8px; line-height: 200px; position: relative; background-color: #fff;">
+									<img style="max-width: 200px; max-height: 200px;" src="http://rs.chankor.com/api/GetResources/290307" />
+								<img class="imgRemove"  src="/img/del_icon.jpg" style="position: absolute;width: 25px;height: 25px;top: 10px;right: 10px;">
+								</li>
+
+							</ul>
+							<div>
+								<button id="carouselImgChange" style="background-color: #717171;padding: 5px 60px; border-radius: 20px;color: white;">更换</button>
+							</div>
+							<span style="font-size: 14px;">推荐尺寸：230px * 240px（宽x高），建议上传三张以上的图片</span>
+						</div>
+
+					</li>
+
+				</ul>
+
+			</div>
+		</div>
+
+		<div id="mainImgUp"></div>
+		<div id="carouselImgUp"></div>
+
+	</body>
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="js/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="js/ueditor/ueditor.all.js"></script>
+	<script type="text/javascript">
+	
+	function initCarouselImgUp() {
+		var carouselImgUp = new UE.ui.Editor();
+		carouselImgUp.render('carouselImgUp');
+		carouselImgUp.ready(function() {
+			carouselImgUp.setDisabled();
+			carouselImgUp.hide();
+		});
+		$("#carouselImgChange").click(function() {
+			var d = carouselImgUp.getDialog("insertimage");
+			d.render();
+			d.open();
+		});
+		
+		carouselImgUp.addListener('beforeInsertImage',function(t, arg){  
+			for(var i=0;i<arg.length;i++){
+				var html = "<li style='width: 200px; height: 200px; padding: 2px; border: 1px solid #d2d2d2; float: left; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center; margin-right: 8px; overflow: hidden; text-align: center; margin-bottom: 8px; line-height: 200px; position: relative; background-color: #fff;'> <img style='max-width: 200px; max-height: 200px;' src='"+arg[i].src+"' /> <img class='imgRemove' src='/img/del_icon.jpg' style='position: absolute;width: 25px;height: 25px;top: 10px;right: 10px;'> </li>";
+				$("#carouselImgUl").append(html);
+			}
+	    });  
+
+	}
+	
+		function initMainImgUp() {
+			var mainImgUp = new UE.ui.Editor();
+			mainImgUp.render('mainImgUp');
+			mainImgUp.ready(function() {
+				mainImgUp.setDisabled();
+				mainImgUp.hide();
+			});
+			$("#mainImgChange").click(function() {
+				var d = mainImgUp.getDialog("insertimage");
+				d.render();
+				d.open();
+			});
+			
+			mainImgUp.addListener('beforeInsertImage',function(t, arg){  
+				$("#mainImgUpImg").attr("src",arg[0].src);
+		    });  
+			
+			/* $(".imgRemove").click(function(){
+				$(this).parent().remove();
+			}); */
+			
+			$("#carouselImgUl").on('click', ".imgRemove", function(){
+			    $(this).parent().remove(); 
+			})
+
+		}
+
+		$(function() {
+			//var mainImgUp = UE.getEditor('mainImgUp');
+			/* 商品主图图片 */
+			initMainImgUp();
+			/* 商品轮播图片 */
+			initCarouselImgUp();
+			
+		});
+	</script>
+
+</html>

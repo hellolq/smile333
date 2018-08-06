@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smile.mapper.CommodityContentDatabaseMapper" >
+
+    <select id="selectAllCommodityContentDatabaseByGoodsId"  resultType="com.smile.pojo.CommodityContent">
+        SELECT c.imgurl AS headImgUrl,c.name AS userName,b.commentDate AS commentDate,
+        b.commenttxt AS commentTxt FROM CommodityContent b,person c
+        WHERE b.personid = c.id AND b.goodsid = #{id}
+    </select>
+
+   <!-- <select id="selectUserInfoByBrTel"  resultType="com.liqiao.pojo.UserInfo">
+        SELECT *  FROM userInfo where brTel = #{tel}
+    </select>
+
+
+    <insert id="saveUserInfo" parameterType="com.liqiao.pojo.UserInfo" >
+        INSERT INTO UserInfo(uid,brTel,pyrTel,salt,name,password,state)
+        VALUES (#{uid},#{brTel},#{pyrTel},#{salt},#{name},#{password},#{state})
+    </insert>-->
+
+</mapper>

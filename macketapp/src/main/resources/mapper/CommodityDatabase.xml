@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smile.mapper.CommodityDatabaseMapper" >
+
+    <select id="selectAllCommodityDatabase"  resultType="com.smile.pojo.CommodityDatabase">
+        SELECT *  FROM Commodity where id = #{id}
+    </select>
+
+    <select id="selectCommodityDatabaseForSumbitPage"  resultType="com.smile.pojo.CommodityDatabase">
+        SELECT id,viewImg,goodsName,price,discount,goodsStock  FROM Commodity WHERE id IN (#{id})
+    </select>
+
+    <!-- 热卖商品展示 selectHotGoodsFromShopgoods -->
+    <select id="selectHotGoodsFromShopgoods"  resultType="com.smile.pojo.Commodity">
+        SELECT id,NAME AS goodsName,CoverImgId AS viewImg,SalesPrice AS price FROM shopgoods WHERE IsPutaway = 1 AND  IsHot = 1
+    </select>
+
+    <!-- 新品专区展示    -->
+    <select id="selectNewGoodsFromShopgoods"  resultType="com.smile.pojo.Commodity">
+       SELECT id,NAME AS goodsName,ShortInfo AS shortInfo,CoverImgId AS viewImg FROM shopgoods WHERE IsPutaway = 1 AND  IsNew = 1 ORDER BY createtime DESC LIMIT 0, 3
+    </select>
+
+    <!-- 为您推荐专区展示    -->
+    <select id="selectRecommendGoodsFromShopgoods"  resultType="com.smile.pojo.Commodity">
+        SELECT id,NAME AS goodsName,CoverImgId AS viewImg,SalesPrice AS price FROM shopgoods ORDER BY id DESC  LIMIT 0,40
+    </select>
+
+    <!-- 商品详情页    -->
+    <select id="selectShopDetailByGoodsId"  resultType="com.smile.pojo.CommodityDatabase">
+        SELECT id,CoverImgId AS viewImg,NAME AS goodsName,RollImages AS headImgs,SalesPrice AS price,MarketPrice AS marketPrice,Inventory AS goodsStock,MarketNumber AS goodsNum,`describe` AS goodsDetailHtml FROM shopgoods WHERE id = #{id}
+    </select>
+
+    <!-- 商品详情页 - 用户评论   -->
+    <select id="selectUserCommentByGoodsId"  resultType="com.smile.pojo.CommodityContent">
+        SELECT a.uid AS id,a.img AS commentImg,a.comment AS commentTxt,FROM_UNIXTIME(a.createtime, '%Y-%m-%d %H:%i:%S') AS commentDate, b.WxNickName AS userName,b.WxHeadImg AS headImgUrl FROM shopgoodscomment a,USER b WHERE a.goodsId = #{id} AND a.comment IS NOT NULL AND a.uid = b.id
+    </select>
+
+    <!-- 购物车加载   -->
+    <select id="selectGoodsCartByUserId"  resultType="com.smile.pojo.GoodsCartDTO">
+      SELECT a.id,a.goodsid,a.number,b.name,b.CoverImgId AS coverImgId,b.salesprice FROM shopcart a,shopgoods b
+      WHERE userid = #{id} AND a.goodsid = b.id AND a.`IsDeleted` = 0 order by a.updatetime DESC
+    </select>
+    
+    <!-- 购物车-删除指定记录 -->
+    <update id="deleteGoodsCartByUserIdAndCartId" >
+        UPDATE shopcart SET isdeleted = '1',updatetime = UNIX_TIMESTAMP(NOW()) WHERE id IN (${cartId})  AND userid = #{userId}
+    </update>
+
+    <!-- 购物车-添加新记录 -->
+    <insert id="addGoodsToShopCart" useGeneratedKeys="true" keyProperty="id" parameterType="com.smile.pojo.GoodsCartDTO">
+        INSERT INTO shopcart(supplierId,goodsId,weight,expressTemplateId,normsInfo,normsId,number,userId,createTime,UpdateTime)
+        SELECT c.supplierId AS supplierId,c.id AS goodsId,c.weight AS weight,c.expressTemplateId AS expressTemplateId, a.normValueAlias AS normsInfo,
+        a.id AS normsId,#{number} AS number,#{name} AS userId,UNIX_TIMESTAMP(NOW()),UNIX_TIMESTAMP(NOW()) FROM shopgoods c
+        LEFT JOIN (SELECT a.id, b.normValueAlias FROM shopgoodsnorms a,shopgoodsnormdetail b WHERE a.id = b.shopGoodsNormId
+        AND a.shopGoodsId = #{goodsid}) a ON 1=1 WHERE c.id = #{goodsid}
+    </insert>
+
+    <!-- 根据购物车ID 展示订单提交页面-->
+    <select id="selectGoodsDetailByCartId"  resultType="com.smile.pojo.SumbitOrderDTO">
+       SELECT b.id,b.CoverImgId AS imgUrl,b.name,a.number,0 AS postage,b.SalesPrice AS price
+                            FROM shopcart a,shopgoods b WHERE a.goodsId = b.id AND a.id IN (${cartId})
+    </select>
+
+    <!-- 根据当前登录人员ID 查询出默认地址-->
+    <select id="selectUserDefaultOrder"  resultType="com.smile.pojo.AddressDTO">
+           SELECT a.id as id,a.realName AS NAME,a.telPhone AS tel,CONCAT(c.name,d.name,b.name,a.address) AS address FROM aliclientreceivers a,areas b,provinces c,citys d
+    WHERE a.userid = #{userId} AND a.areaId = b.id AND a.provinceId = c.id AND a.cityId = d.id AND isdefault = 1
+    </select>
+
+    <!-- 根据当前登录人员ID 查询出所有地址-->
+    <select id="selectUserAllOrderAddress"  resultType="com.smile.pojo.AddressDTO">
+        SELECT a.id,a.realName AS NAME,a.telPhone AS tel,CONCAT(c.name,d.name,b.name,a.address) AS address FROM aliclientreceivers a,areas b,provinces c,citys d
+        WHERE a.userid = #{userId} AND a.IsDeleted = 0 AND a.areaId = b.id AND a.provinceId = c.id AND a.cityId = d.id  order by  a.isdefault DESC
+    </select>
+
+    <!-- 更新默认收货地址-->
+    <update id="updateDefaultAddress"  >
+        UPDATE aliclientreceivers SET isdefault = 0 WHERE isdefault = 1  AND userid = #{userid};
+        UPDATE aliclientreceivers SET isdefault = 1 WHERE id = #{id}
+    </update>
+
+   <!-- 查询出全部省区 -->
+    <select id="selectAllProvince" resultType="com.smile.pojo.ProvinceDTO">
+        SELECT id,NAME FROM provinces
+    </select>
+
+    <!-- 根据省区查询出所有城市信息 -->
+    <select id="selectAllCityByProvinceId" resultType="com.smile.pojo.ProvinceDTO">
+        SELECT id,NAME FROM citys WHERE provinceId = #{id}
+    </select>
+
+    <!-- 根据城市查询出所有区信息 -->
+    <select id="selectAllAreaByCityId" resultType="com.smile.pojo.ProvinceDTO">
+        SELECT id,NAME AS NAME FROM areas WHERE CityId = #{id}
+    </select>
+
+    <!-- 客户添加新地址 -->
+    <insert id="addNewReciveAddress" parameterType="com.smile.pojo.AddressDO">
+        INSERT INTO aliclientreceivers(UserId,RealName,TelPhone,ProvinceId,CityId,AreaId,Address,CreateTime,UpdateTime)
+          VALUES(#{userId},#{realName},#{telPhone},#{provinceId},#{cityId},#{areaId},#{address},UNIX_TIMESTAMP(NOW()),UNIX_TIMESTAMP(NOW()))
+    </insert>
+
+    <!-- 删除收货地址 -->
+    <update id="deleteReciveAddress">
+         UPDATE aliclientreceivers SET IsDeleted = 1,UpdateTime = UNIX_TIMESTAMP(NOW()) WHERE id= #{id} AND UserId = #{userId}
+    </update>
+
+    <!--根据地址ID查询出地址 -->
+    <select id="selectAddressDOByAddressId" resultType="com.smile.pojo.AddressDO">
+       SELECT id,RealName as realName,TelPhone as telPhone,ProvinceId as provinceId,CityId as cityId,AreaId as areaId,Address as address
+       FROM aliclientreceivers WHERE  id = #{addressId} AND IsDeleted = 0
+    </select>
+
+    <!-- 编辑收货地址 -->
+    <update id="updateAddressByAddressId" parameterType="com.smile.pojo.AddressDO">
+        UPDATE aliclientreceivers
+        <set>
+            <if test="id != null">
+                UpdateTime = UNIX_TIMESTAMP(NOW()),
+            </if>
+            <if test="address != null">
+                Address = #{address},
+            </if>
+            <if test="areaId != 0">
+                AreaId = #{areaId},
+            </if>
+            <if test="cityId != 0">
+                CityId = #{cityId},
+            </if>
+            <if test="provinceId != 0">
+                ProvinceId = #{provinceId},
+            </if>
+            <if test="realName != null">
+                RealName = #{realName},
+            </if>
+            <if test="telPhone != null">
+                TelPhone = #{telPhone},
+            </if>
+        </set>
+        WHERE id= #{id} AND UserId = #{userId}
+    </update>
+
+    <!--  根据购物车ID，查询出购物车信息 -->
+    <select id="selectGoodsCartByCartId" resultType="com.smile.pojo.GoodsCartDO">
+       SELECT SupplierId AS supplierId,GoodsId AS goodsId,Number AS number,NormsId AS normsId,
+            UserId AS userId,NormsInfo AS normsInfo,Weight AS weight,ExpressTemplateId AS expressTemplateId  FROM shopcart WHERE id IN (${cartId})
+    </select>
+
+
+    <!--  根据商品ID 查询商品详细信息  -->
+    <select id="getShopGoodsListByGoodsId" resultType="com.smile.pojo.ShopGoods" >
+        SELECT Id,SupplierId AS supplierId,`Name` AS `name`,ShortInfo AS shortInfo,CategoryId AS categoryId,MarketNumber AS marketNumber,
+        Weight AS weight,CoverImgId AS coverImgId,RollImages AS rollImages,MarketPrice AS marketPrice,SalesPrice AS salesPrice,
+        CostPrice AS costPrice,PV AS pv,Inventory AS inventory,WarningInventory AS warningInventory,`Describe` AS describes,IsNorm AS norm,
+        IsPutaway AS putaway,IsOnSale AS onSale,IsSpecialGoods AS specialGoods,IsHot AS hot,IsNew AS news,UnitsTitle AS unitsTitle,
+        GoodsCode AS goodsCode,AuditReason AS auditReason,ExpressTemplateId AS expressTemplateId,UserPercent AS userPercent,
+        FatherPercent AS fatherPercent,IsPublicGoods AS publicGoods,PublicPercent AS publicPercent,IsExchangeGoods AS exchangeGoods,
+        Homepurchaserestrictions AS homepurchaserestrictions,Timing AS timing,Timeframe AS timeframe,PublicNumber AS publicNumber,
+        PublicInventory AS publicInventory,CutDownTime AS cutDownTime,LowPrice AS lowPrice,HighPrice AS highPrice,IsBargainGoods AS bargainGoods,
+        Cheap AS cheap,MaxUseIntegral AS maxUseIntegral,IsLuckGoods AS luckGoods,FullNum AS fullNum,ReduceNum AS reduceNum,SalesPriceTwo AS salesPriceTwo
+        FROM shopGoods WHERE id =  #{id}
+    </select>
+
+    <!--  根据商品ID、ShopGoodsNormId  查出对应的 ShopOrderGoods  -->
+    <select id="getShopOrderGoodsByGoodsIdAndShopGoodsNormId" resultType="com.smile.pojo.ShopOrderGoods" >
+       SELECT a.SupplierId AS supplierId,a.id AS goodsId,a.Name AS goodsName,a.ShortInfo AS goodsShortInfo ,
+       a.CategoryId AS goodsCategoryId,b.Title AS goodsCategoryTitle,a.Weight AS goodsWeight,a.CoverImgId AS goodsCoverImgId,
+       a.RollImages AS goodsRollImages,a.SalesPrice AS goodsSalesPrice,a.CostPrice AS goodsCostPrice,a.Describe AS goodsDescribe,
+       a.IsNorm AS goodsIsNorm,d.ShopGoodsNormId AS goodsNormId,CONCAT(c.NormName,":",d.NormValueAlias)AS goodsNorms,a.IsOnSale AS onSale,
+       a.PublicNumber AS publicNumber,a.MaxUseIntegral AS maxUseIntegral,a.SalesPriceTwo AS salesPriceTwo FROM shopgoods a LEFT JOIN
+       shopgoodscategory b ON a.CategoryId = b.id LEFT JOIN shopgoodsnormdetail d ON ShopGoodsNormId = #{shopGoodsNormId}
+       LEFT JOIN shopnormsnames c ON d.ShopNormNameId =  c.id WHERE a.id = #{id}
+    </select>
+
+    <!--  根据ID 查询出地址信息  -->
+    <select id="selectAliclientreceiversById" resultType="com.smile.pojo.AliClientReceivers" >
+        SELECT Id AS id,UserId AS userId,RealName AS realName,TelPhone AS telPhone,ProvinceId AS provinceId, CityId AS cityId,
+        AreaId AS areaId,Address AS address,IsDefault AS defaults,CreateTime AS createTime, UpdateTime AS updateTime
+        FROM aliclientreceivers WHERE id = #{id}
+    </select>
+
+    <!-- 提交订单 向 shoporders 表中插入提交订单的数据 -->
+    <insert id="insertIntoShoporders" useGeneratedKeys="true" keyProperty="id" parameterType="com.smile.pojo.ShopOrders">
+        INSERT INTO shoporders(UserId,ToTalOrderNo,OrderNo,OrderState,PayType,PayState,ExpressId,ExpressName,ExpressTemplateId,
+        GoodsTotalCostPrice,GoodsTotalPrice,GoodsTotalPVPrice,ExpressPrice,TotalPrice,Remark,LeaveWord, CreateTime,UpdateTime,ReceiverName,
+        ReceiverMobile,ReceiverTelPhone,ReceiverProvinceId, ReceiverCityId,ReceiverAreaId,ReceiverAddress,IsInvoice,InvoiceType,InvoiceTitle,
+        wxOpenId,NewTime, BargainId,AllowMaxUseIntegral) VALUES(#{userId},#{toTalOrderNo}, #{orderNo},#{orderState},#{payType},#{payState},
+        #{expressId},#{expressName},#{expressTemplateId},#{goodsTotalCostPrice}, #{goodsTotalPrice},#{goodsTotalPVPrice},#{expressPrice},
+        #{totalPrice},#{remark},#{leaveWord}, UNIX_TIMESTAMP(NOW()),UNIX_TIMESTAMP(NOW()),#{receiverName},#{receiverMobile}, #{receiverTelPhone},
+        #{receiverProvinceId},#{receiverCityId},#{receiverAreaId},#{receiverAddress}, #{invoice},#{invoiceType},#{invoiceTitle},#{wxOpenId},
+        #{newTime},#{bargainId},#{allowMaxUseIntegral} )
+    </insert>
+
+    <!-- 提交订单 向 shopordersgoods 表中插入订单商品明细 -->
+    <insert id="insertIntoShopordersgoods" useGeneratedKeys="true" keyProperty="id" parameterType="com.smile.pojo.ShopOrderGoods">
+       INSERT INTO shopordergoods(SupplierId,OrderId,OrderNo,GoodsId,GoodsName,GoodsNum,GoodsShortInfo,GoodsCategoryId,GoodsCategoryTitle,
+       GoodsWeight,GoodsCoverImgId,GoodsRollImages,GoodsSalesPrice,GoodsCostPrice,GoodsDescribe,GoodsIsNorm,GoodsNormId,GoodsNorms,IsOnSale,
+       CreateTime,UpdateTime,PublicNumber,MaxUseIntegral,SalesPriceTwo) VALUES(#{supplierId},#{orderId},#{orderNo},#{goodsId},#{goodsName},#{goodsNum},#{goodsShortInfo},#{goodsCategoryId},#{goodsCategoryTitle},
+         #{goodsWeight},#{goodsCoverImgId},#{goodsRollImages},#{goodsSalesPrice},#{goodsCostPrice},#{goodsDescribe},#{goodsIsNorm},
+         #{goodsNormId},#{goodsNorms},#{onSale},UNIX_TIMESTAMP(NOW()),UNIX_TIMESTAMP(NOW()),#{publicNumber},#{maxUseIntegral},#{salesPriceTwo})
+    </insert>
+
+    <!-- 根据 shopOrders ID 查询出商品金额列表 -->
+    <select id="selectSumXsjeByShopOrdersId" resultType="java.lang.Double" >
+        SELECT GoodsSalesPrice  FROM shoporders a,shopordergoods b WHERE a.id = b.orderId AND a.ToTalOrderNo = #{id}
+    </select>
+
+
+
+
+
+</mapper>
